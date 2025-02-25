@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Asignaturas</ion-title>
+
+  </ion-toolbar>
+  <mat-tab-group [@translateTab] animationDuration="250ms" (selectedIndexChange)="changeCourse($event)">
+    <mat-tab *ngFor="let course of courses">
+      <ng-template mat-tab-label>
+        <span class="text-white">{{course.courseDescription}}</span>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</ion-header>
+
+
+<ion-content>
+  <mat-tab-group animationDuration="250ms" (selectedIndexChange)="changeSemester($event)">
+    <mat-tab *ngFor="let semester of semesters" >
+      <ng-template mat-tab-label>
+        <span class="text-white">{{semester.semesterDescription}}</span>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <ion-list class="list" lines="none">
+    <ion-item *ngFor="let item of filteredItems" (click)="showToast(item.subject)">
+      <ion-icon aria-hidden="true" slot="start" [ios]="'heart'" [md]="'heart-outline'"></ion-icon>
+      {{ item.subject }}
+    </ion-item>
+  </ion-list>
+</ion-content>

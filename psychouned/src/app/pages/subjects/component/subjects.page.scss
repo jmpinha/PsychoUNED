@@ -1,0 +1,12 @@
+.text-white {
+    color: white !important;
+}
+
+.list {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.list ion-item:last-child::after {
+    border-bottom: none !important;
+}

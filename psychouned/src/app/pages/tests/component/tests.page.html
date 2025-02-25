@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p>{{question}}</p>
+  <ion-list class="list" lines="none">
+    <ion-item *ngFor="let  item of answers; let i = index"> 
+      <mat-checkbox 
+    [ngClass]="{'correct': item.checked && item.answerCorrect&&isConfirmed,'error': item.checked && !item.answerCorrect&&isConfirmed,}" [checked]="item.checked" [disabled]="isConfirmed" (change)="onCheckboxChange(i)">
+        <ng-container *ngIf="isConfirmed">
+          <ion-icon *ngIf=" item.checked && item.answerCorrect&&isConfirmed" name="checkmark-circle"
+            color="success"></ion-icon>
+          <ion-icon *ngIf=" item.checked && !item.answerCorrect&&isConfirmed" name="close-circle"
+            color="danger"></ion-icon>
+        </ng-container>
+        <span>
+          {{ item.aswer }}
+        </span>
+
+      </mat-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer class="footer">
+
+  <ion-button >ATRAS</ion-button>
+  <ion-button (click)="confirmSelection()">CORREGIR</ion-button>
+  <ion-button>SIGUIENTE</ion-button>
+</ion-footer>
