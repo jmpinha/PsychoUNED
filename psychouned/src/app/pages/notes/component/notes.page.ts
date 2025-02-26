@@ -10,18 +10,15 @@ import { NotesPageRoutingModule } from '../notes-routing.module';
   selector: 'app-notes',
   templateUrl: './notes.page.html',
   styleUrls: ['./notes.page.scss'],
-    imports: [
-      CommonModule,
-      FormsModule,
-      IonicModule,
-      NotesPageRoutingModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    NotesPageRoutingModule
+  ],
 })
-export class NotesPage implements OnInit {
-  subjectsNames=MenuNames;
+export class NotesPage {
+  subjectsNames = MenuNames;
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

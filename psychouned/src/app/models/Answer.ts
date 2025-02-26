@@ -1,6 +1,6 @@
 
 export interface Answer {
-    aswer: string;
+    answer: string;
     checked: boolean;
     answerCorrect?: boolean;
 }

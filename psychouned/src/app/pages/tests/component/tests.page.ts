@@ -8,6 +8,8 @@ import { addIcons } from 'ionicons';
 import { checkmarkCircle, closeCircle } from 'ionicons/icons';
 import { QuestionComponent } from "../../../shared/question/question.component";
 import { Answer } from 'src/app/models/Answer';
+import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
+import { GlobalsService } from 'src/app/services/Globals.service';
 
 @Component({
   selector: 'app-tests',
@@ -22,43 +24,102 @@ import { Answer } from 'src/app/models/Answer';
     QuestionComponent
   ],
 })
-export class TestsPage implements OnInit {
+export class TestsPage {
 
-  isConfirmed = false; // Variable para bloquear checkboxes y cambiar color
-  question = "1. El valor relacional:";
-  answers: Answer[] = [
+  questionMock = "1. El valor relacional:";
+  answersMock: Answer[] = [
     {
-      aswer: "Se considera un motivo social universal, ya que necesitamos a los otros para entender el mundo que nos rodea.",
+      answer: "Se considera un motivo social universal, ya que necesitamos a los otros para entender el mundo que nos rodea.",
       checked: false
     },
     {
-      aswer: "Se considera un motivo social universal, ya que necesitamos a " +
+      answer: "Se considera un motivo social universal, ya que necesitamos a " +
         "los otros para sentir que lo que hacemos tiene relación con lo que conseguimos.",
       checked: false
     },
     {
-      aswer: "No se considera un motivo social universal.",
+      answer: "No se considera un motivo social universal.",
       checked: false,
       answerCorrect: true
     }
   ];
-  constructor() {
-    addIcons({ checkmarkCircle, closeCircle });
-  }
 
-  ngOnInit() {
+  question2Mock = "2. ¿Cuáles de los siguientes componentes forman parte de una "
+    + " caja de Skinner para ratas según el vídeo sobre `Programas de reforzamiento`?:";
+  answers2Mock: Answer[] = [
+    {
+      answer: "Se considera un motivo social universal, ya que necesitamos a los otros para entender el mundo que nos rodea.22",
+      checked: false
+    },
+    {
+      answer: "Se considera un motivo social universal, ya que necesitamos a " +
+        "los otros para sentir que lo que hacemos tiene relación con lo que conseguimos.22",
+      checked: false
+    },
+    {
+      answer: "No se considera un motivo social universal.2",
+      checked: false,
+      answerCorrect: true
+    }
+  ];
+
+
+  checkedButton= true;
+  questionsAnswer: QuestionsAnswer[] = [
+    { question: this.questionMock, answers: this.answersMock, isConfirmed: false, checked: false },
+    { question: this.question2Mock, answers: this.answers2Mock, isConfirmed: false, checked: false }];
+  correctedListAnswers = this.fillCorrectedAnswers();
+  nQuestions = this.questionsAnswer.length;
+  positionNow = 0;
+  result?: boolean;
+  get currentQuestionAnswer(): QuestionsAnswer {
+    return this.questionsAnswer[this.positionNow];
   }
+  get successes(): number {
+    return this.questionsAnswer.filter((item) => item.isSuccess===true).length;
+  }
+  get mistakes(): number {
+    return this.questionsAnswer.filter((item) => item.isSuccess===false).length;
+  }
+  get notAnswered(): number {
+    return this.questionsAnswer.filter((item) => item.checked !== true && item.isSuccess !== true).length;
+  }
+  constructor(private globalsService: GlobalsService) {}
+
 
   onCheckboxChange(selectedIndex: number) {
-    this.answers.forEach((item, index) => {
+    this.answersMock.forEach((item, index) => {
       item.checked = index === selectedIndex;
     });
   }
   confirmSelection() {
-    if (this.answers.find(answer => answer.checked === true)) {
-
-      this.isConfirmed = true;
-      console.log(this.isConfirmed);
+    if (this.currentQuestionAnswer.checked) {
+      this.currentQuestionAnswer.isConfirmed = true;
+      this.currentQuestionAnswer.isSuccess = this.result;
+      
+    } else {
+      this.globalsService.showToast("Por favor, seleccione una respuesta");
     }
+  }
+  next() {
+    this.positionNow++;
+  }
+  back() {
+    this.positionNow--;
+  }
+  fillCorrectedAnswers(): boolean[] {
+    let correctedAnswers: boolean[] = [];
+    this.answersMock.forEach(() => {
+      correctedAnswers.push(false);
+    });
+
+    return correctedAnswers;
+
+  }
+  changeChecked(checked: boolean) {
+    this.currentQuestionAnswer.checked = checked;
+  }
+  changeResult($event?: boolean) {
+    this.result = $event;
   }
 }

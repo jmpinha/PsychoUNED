@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { TestsPageRoutingModule } from 'src/app/pages/tests/tests-routing.module';
 import { IonicModule } from '@ionic/angular';
-import { Answer } from 'src/app/models/Answer';
-import { UtilsService } from '../Utils.service';
+import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
+import { GlobalsService } from 'src/app/services/Globals.service';
 
 @Component({
   selector: 'app-question',
@@ -19,18 +19,27 @@ import { UtilsService } from '../Utils.service';
     MatCheckboxModule
   ],
 })
-export class QuestionComponent implements OnInit {
-  @Input() question = '';
-  @Input() answers: Answer[] = [];
-  @Input() isConfirmed = false;
-  constructor(public utils: UtilsService) { }
+export class QuestionComponent {
+  @Output() questionAnswerChange =  new EventEmitter<boolean>();
+  @Output() result2 =  new EventEmitter<boolean|undefined>();
+  @Input() questionAnswer :QuestionsAnswer= {
+    question: '',
+    answers: [],
+    isConfirmed: false,
+    checked: false
+  };
+  constructor(public utils: GlobalsService) { }
 
-  ngOnInit() {
-  }
 
-  onCheckboxChange(selectedIndex: number) {
-    this.answers.forEach((item, index) => {
+  onCheckboxChange(event:MatCheckboxChange ,selectedIndex: number, isCorrect?: boolean) {
+    this.questionAnswer.answers.forEach((item, index) => {
       item.checked = index === selectedIndex;
     });
+    this.questionAnswerChange.emit(event.checked);
+    if (event.checked) {
+      this.result2.emit(isCorrect??false);
+    }else{
+      this.result2.emit(undefined);
+    }
   }
 }

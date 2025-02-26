@@ -10,11 +10,14 @@ export class GlobalsService {
 
   async showToast(word: string) {
     const toast = await this.toastController.create({
-      message: `Este es un mensaje flotante ${word}`,
-      duration: 3000,  // Se muestra por 3 segundos
-      position: 'bottom' // Puedes usar 'top', 'middle' o 'bottom'
+      message: word,
+      duration: 3000,
+      position: 'bottom'
     });
 
     await toast.present();
+  }
+  public loadLetter(i: number): string {
+    return `${String.fromCharCode(97 + i)})`
   }
 }
