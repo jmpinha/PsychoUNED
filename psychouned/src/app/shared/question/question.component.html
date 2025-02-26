@@ -1,0 +1,18 @@
+  <p>{{question}}</p>
+  <ion-list class="list" lines="none">
+    <ion-item *ngFor="let  item of answers; let i = index"> 
+      <mat-checkbox 
+    [ngClass]="{'correct': item.checked && item.answerCorrect&&isConfirmed,'error': item.checked && !item.answerCorrect&&isConfirmed,}" [checked]="item.checked" [disabled]="isConfirmed" (change)="onCheckboxChange(i)">
+        <ng-container *ngIf="isConfirmed">
+          <ion-icon *ngIf=" item.checked && item.answerCorrect&&isConfirmed" name="checkmark-circle"
+            color="success"></ion-icon>
+          <ion-icon *ngIf=" item.checked && !item.answerCorrect&&isConfirmed" name="close-circle"
+            color="danger"></ion-icon>
+        </ng-container>
+        <span>
+          {{utils.loadLetter(i)}} {{ item.aswer }}
+        </span>
+
+      </mat-checkbox>
+    </ion-item>
+  </ion-list>

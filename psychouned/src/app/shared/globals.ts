@@ -14,4 +14,5 @@ export class Globals {
   
       await toast.present();
     }
+    
 }
