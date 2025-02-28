@@ -1,0 +1,25 @@
+.example-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #272727;
+    margin: 10px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.example-full-width {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.input-top{
+    margin-top: 10px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Para Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

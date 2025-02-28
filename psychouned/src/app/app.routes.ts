@@ -7,7 +7,7 @@ import { TestsPage } from './pages/tests/component/tests.page';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tests',
+    redirectTo: 'grades',
     pathMatch: 'full',
   },
   {
@@ -24,6 +24,11 @@ export const routes: Routes = [
     path: 'tests',
     loadComponent: () =>
       import('./pages/tests/component/tests.page').then((m) => m.TestsPage),
+  },
+  {
+    path: 'grades',
+    loadComponent: () =>
+      import('./pages/grades/component/grades.page').then((m) => m.GradesPage),
   }
 ];
 @NgModule({

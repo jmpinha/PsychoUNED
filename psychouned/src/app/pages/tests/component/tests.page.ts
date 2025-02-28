@@ -10,6 +10,8 @@ import { QuestionComponent } from "../../../shared/question/question.component";
 import { Answer } from 'src/app/models/Answer';
 import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
 import { GlobalsService } from 'src/app/services/Globals.service';
+import { GradeComponent } from 'src/app/shared/grade/grade.component';
+import { GradeService } from 'src/app/services/Grade.service';
 
 @Component({
   selector: 'app-tests',
@@ -17,11 +19,9 @@ import { GlobalsService } from 'src/app/services/Globals.service';
   styleUrls: ['./tests.page.scss'],
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    TestsPageRoutingModule,
-    MatCheckboxModule,
-    QuestionComponent
+    QuestionComponent,
+    GradeComponent
   ],
 })
 export class TestsPage {
@@ -72,6 +72,7 @@ export class TestsPage {
   nQuestions = this.questionsAnswer.length;
   positionNow = 0;
   result?: boolean;
+  totalOptions=this.questionsAnswer[0].answers.length;
   get currentQuestionAnswer(): QuestionsAnswer {
     return this.questionsAnswer[this.positionNow];
   }
@@ -84,7 +85,9 @@ export class TestsPage {
   get notAnswered(): number {
     return this.questionsAnswer.filter((item) => item.checked !== true && item.isSuccess !== true).length;
   }
-  constructor(private globalsService: GlobalsService) {}
+  resultadoNota = 0;
+  constructor(private globalsService: GlobalsService,
+    private gradeService:GradeService) {}
 
 
   onCheckboxChange(selectedIndex: number) {
@@ -100,6 +103,8 @@ export class TestsPage {
     } else {
       this.globalsService.showToast("Por favor, seleccione una respuesta");
     }
+    
+    this.resultadoNota=this.gradeService.calculateGrade(this.successes ?? 0, this.mistakes ?? 0, this.nQuestions ?? 0, this.totalOptions);
   }
   next() {
     this.positionNow++;

@@ -9,15 +9,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-title>
-    Aciertos: {{successes}}
-  </ion-title>
-  <ion-title>
-    Errores: {{mistakes}}
-  </ion-title>
-  <ion-title>
-    No respondidas: {{notAnswered}}
-  </ion-title>
+  
+  <app-grade [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="resultadoNota"></app-grade>
   <app-question (questionAnswerChange)="changeChecked($event)" (result2)="changeResult($event)"
     [questionAnswer]="currentQuestionAnswer"></app-question>
 </ion-content>

@@ -3,6 +3,7 @@ export enum MenuNames {
     TESTS = 'Tests',
     NOTES = 'Apuntes',
     FORUM = 'Foro',
+    GRADES = 'Calculadora de notas',
 }
 
 export enum Courses {
