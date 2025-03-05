@@ -17,10 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AppComponent {
     public appPages = [
-        { title: MenuNames.SUBJECTS, url: 'subjects', icon: 'flower' },
-        { title: MenuNames.NOTES, url: 'notes', icon: 'book' },
-        { title: MenuNames.TESTS, url: 'tests', icon: 'checkbox' },
-        { title: MenuNames.GRADES, url: 'grades', icon: 'calculator' },
+        // { title: MenuNames.SUBJECTS, url: 'subjects', icon: 'flower' },
+        // { title: MenuNames.NOTES, url: 'notes', icon: 'book' },
+        // { title: MenuNames.TESTS, url: 'tests', icon: 'checkbox' },
+        { title: MenuNames.GRADES, url: 'calculadora', icon: 'calculator' },
     ];
     public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
     constructor() {
