@@ -1,25 +1,14 @@
 <form class="example-form">
-  <mat-form-field class="example-full-width input-top">
-    <mat-label>Total de preguntas</mat-label>
-    <input matInput type="text" (input)="validateNumber($event)" [formControl]="totalAnswersForm"  maxlength="2"
-      [formControl]="totalAnswersForm">
-  </mat-form-field>
-  <mat-form-field class="example-full-width input-top">
-    <mat-label>Total de opciones</mat-label>
-    <input matInput type="text" (input)="validateNumber($event)" [formControl]="totalOptionsForm">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Aciertos</mat-label>
-    <input matInput type="text" (input)="validateNumber($event)" maxlength="2" [formControl]="successesForm" min="0" max="99">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Errores</mat-label>
-    <input matInput type="text" (input)="validateNumber($event)" maxlength="2" [formControl]="mistakesForm" min="0" max="99">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>No respondidas</mat-label>
-    <input matInput type="text" (input)="validateNumber($event)" maxlength="2" [formControl]="answersBlankForm" min="0" max="99">
-  </mat-form-field>
+  <app-input-component [optionForm]="totalQuestionsForm" [label]="'Total de preguntas'" class="custom-input" (optionResponse)="changeQuestion($event)">
+  </app-input-component>
+  <app-input-component [optionForm]="totalOptionsForm" [label]="'Total de opciones'" class="custom-input" (optionResponse)="changeOptions($event)">
+  </app-input-component>
+  <app-input-component [optionForm]="successesForm" [label]="'Aciertos'" class="custom-input" (optionResponse)="changeSuccess($event)">
+  </app-input-component>
+  <app-input-component [optionForm]="mistakesForm" [label]="'Fallos'" class="custom-input" (optionResponse)="changeMistakes($event)">
+  </app-input-component>
+  <app-input-component [optionForm]="answersBlankForm" [label]="'En Blanco'" class="custom-input" (optionResponse)="changeAnswerBlank($event)">
+  </app-input-component>
   <ion-button (click)="submit()">Resultado</ion-button>
 
 </form>

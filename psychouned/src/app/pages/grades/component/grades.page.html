@@ -9,6 +9,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <app-grade-calculator (gradeOut)="calculateGrade($event)"></app-grade-calculator>
-    <app-grade [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="grade"></app-grade>
+    <app-grade-calculator  (gradeOut)="calculateGrade($event)"></app-grade-calculator>
+    <app-grade [viewGrade]="true" [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="grade"></app-grade>
 </ion-content>

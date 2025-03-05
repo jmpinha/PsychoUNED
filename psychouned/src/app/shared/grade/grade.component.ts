@@ -14,10 +14,12 @@ import { IonicModule } from '@ionic/angular';
 })
 export class GradeComponent {
 
-  @Input() successes =0;
-  @Input() mistakes =0;
-  @Input() notAnswered =0;
-  @Input() grade =0;
+  @Input() successes = 0;
+  @Input() mistakes = 0;
+  @Input() notAnswered = 0;
+  @Input() viewGrade = false;
+  @Input() grade = 0;
+  
   constructor() { }
 
 }
