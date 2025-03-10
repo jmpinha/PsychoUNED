@@ -7,10 +7,10 @@ import { GlobalsService } from 'src/app/services/globals.service';
 import { Grade } from 'src/app/models/Grade';
 import { GradeService } from 'src/app/services/grade.service';
 import { MatIconModule } from '@angular/material/icon';
-import { InputComponentComponent } from '../input-component/input-component.component';
 import {MatSelectModule} from '@angular/material/select';
-import { SelectComponentComponent } from '../select-component/select-component.component';
 import { ThemeService } from 'src/app/services/theme.service';
+import { InputComponentComponent } from 'src/app/components/common/input-component/input-component.component';
+import { SelectComponentComponent } from 'src/app/components/common/select-component/select-component.component';
 
 @Component({
     selector: 'app-grade-calculator',

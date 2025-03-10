@@ -11,25 +11,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-init-test [oneTouch]="oneTouch" [viewGrade]="viewGrade" [viewAllQuestions]="viewAllQuestions"
+  <app-test-init [oneTouch]="oneTouch" [viewGrade]="viewGrade" [viewAllQuestions]="viewAllQuestions"
     (oneTouchOut)="changeOneTouch($event)" (viewGradeOut)="changeViewGrade($event)"
     (viewAllQuestionsOut)="changeViewAllQuestions($event)" (saveInit)="changeSaveInit($event)"
-    *ngIf="!testStarted"></app-init-test>
+    *ngIf="!testStarted"></app-test-init>
   <app-grade [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="resultadoNota"
     [viewGrade]="viewGrade" *ngIf="testStarted"></app-grade>
 
 
-  <app-question (questionAnswerChange)="changeChecked($event)" (result2)="changeResult($event)"
+  <app-test-question (questionAnswerChange)="changeChecked($event)" (result2)="changeResult($event)"
     [questionAnswer]="currentQuestionAnswer" *ngIf="testStarted&&!viewAllQuestions"
-    [numberQuestion]="positionNow+1"></app-question>
+    [numberQuestion]="positionNow+1"></app-test-question>
 
 
   <ion-list *ngIf="testStarted&&viewAllQuestions" class="list-questions" lines="none">
     @for (questionAnswer of questionsAnswer; track questionAnswer; let i = $index) {
     <ion-item class="item-question">
-      <app-question (questionAnswerChange)="changeCheckedAllQuestions($event,i)"
+      <app-test-question (questionAnswerChange)="changeCheckedAllQuestions($event,i)"
         (result2)="changeResultWithIndex(i,$event)" [questionAnswer]="questionAnswer"
-        [numberQuestion]="i+1"></app-question>
+        [numberQuestion]="i+1"></app-test-question>
 
     </ion-item>
     <div class="content-button">

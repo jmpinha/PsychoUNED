@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { GradeCalculatorComponent } from 'src/app/shared/gradeCalculator/gradeCalculator.component';
 import { IonicModule } from '@ionic/angular';
-import { GradeComponent } from 'src/app/shared/grade/grade.component';
+import { GradeComponent } from 'src/app/components/grade-components/grade/grade.component';
+import { GradeCalculatorComponent } from 'src/app/components/grade-components/gradeCalculator/gradeCalculator.component';
 import { Grade } from 'src/app/models/Grade';
 
 @Component({

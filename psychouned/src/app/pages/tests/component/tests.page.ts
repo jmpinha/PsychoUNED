@@ -6,14 +6,14 @@ import { TestsPageRoutingModule } from '../tests-routing.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { addIcons } from 'ionicons';
 import { checkmarkCircle, closeCircle } from 'ionicons/icons';
-import { QuestionComponent } from "../../../shared/question/question.component";
+import { QuestionComponent } from "../../../components/test-components/test-question/test-question.component";
 import { Answer } from 'src/app/models/Answer';
 import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
 import { GlobalsService } from 'src/app/services/globals.service';
-import { GradeComponent } from 'src/app/shared/grade/grade.component';
 import { GradeService } from 'src/app/services/grade.service';
-import { InitTestComponent } from 'src/app/shared/init-test/init-test.component';
+import { InitTestComponent } from 'src/app/components/test-components/test-init/test-init.component';
 import { IonButton,IonFooter,IonItemDivider,IonItem,IonList,IonContent,IonTitle,IonMenuButton,IonButtons,IonToolbar,IonHeader} from '@ionic/angular/standalone';
+import { GradeComponent } from 'src/app/components/grade-components/grade/grade.component';
 
 @Component({
     selector: 'app-tests',

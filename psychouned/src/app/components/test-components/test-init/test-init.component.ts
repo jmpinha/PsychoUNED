@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { IonToggle } from '@ionic/angular/standalone';
 
 @Component({
-	selector: 'app-init-test',
-	templateUrl: './init-test.component.html',
-	styleUrls: ['./init-test.component.css'],
+	selector: 'app-test-init',
+	templateUrl: './test-init.component.html',
+	styleUrls: ['./test-init.component.scss'],
 	imports: [
 		CommonModule,
 		FormsModule,

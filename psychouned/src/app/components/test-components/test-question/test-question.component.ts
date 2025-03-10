@@ -9,9 +9,9 @@ import { GlobalsService } from 'src/app/services/globals.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss'],
+  selector: 'app-test-question',
+  templateUrl: './test-question.component.html',
+  styleUrls: ['./test-question.component.scss'],
   imports: [
     CommonModule,
     FormsModule,
