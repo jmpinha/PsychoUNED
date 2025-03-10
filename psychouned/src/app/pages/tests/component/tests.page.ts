@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TestsPageRoutingModule } from '../tests-routing.module';
@@ -9,9 +9,11 @@ import { checkmarkCircle, closeCircle } from 'ionicons/icons';
 import { QuestionComponent } from "../../../shared/question/question.component";
 import { Answer } from 'src/app/models/Answer';
 import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
-import { GlobalsService } from 'src/app/services/Globals.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 import { GradeComponent } from 'src/app/shared/grade/grade.component';
-import { GradeService } from 'src/app/services/Grade.service';
+import { GradeService } from 'src/app/services/grade.service';
+import { InitTestComponent } from 'src/app/shared/init-test/init-test.component';
+import { IonButton,IonFooter,IonItemDivider,IonItem,IonList,IonContent,IonTitle,IonMenuButton,IonButtons,IonToolbar,IonHeader} from '@ionic/angular/standalone';
 
 @Component({
     selector: 'app-tests',
@@ -19,14 +21,25 @@ import { GradeService } from 'src/app/services/Grade.service';
     styleUrls: ['./tests.page.scss'],
     imports: [
         CommonModule,
-        IonicModule,
+        IonButton,
+        IonFooter,
+        IonItemDivider,
+        IonItem,
+        IonList,
+        IonTitle,
+        IonContent,
+        IonMenuButton,
+        IonButtons,
+        IonToolbar,
+        IonHeader,
         QuestionComponent,
-        GradeComponent
+        GradeComponent,
+        InitTestComponent
     ],
 })
 export class TestsPage {
 
-    questionMock = "1. El valor relacional:";
+    questionMock = "El valor relacional:";
     answersMock: Answer[] = [
         {
             answer: "Se considera un motivo social universal, ya que necesitamos a los otros para entender el mundo que nos rodea.",
@@ -44,7 +57,7 @@ export class TestsPage {
         }
     ];
 
-    question2Mock = "2. ¿Cuáles de los siguientes componentes forman parte de una "
+    question2Mock = "¿Cuáles de los siguientes componentes forman parte de una "
         + " caja de Skinner para ratas según el vídeo sobre `Programas de reforzamiento`?:";
     answers2Mock: Answer[] = [
         {
@@ -64,7 +77,11 @@ export class TestsPage {
     ];
 
 
-    checkedButton = true;
+    oneTouch = false;
+    viewGrade = false;
+    viewAllQuestions = false;
+    saveInit = false;
+    testStarted = false;
     questionsAnswer: QuestionsAnswer[] = [
         { question: this.questionMock, answers: this.answersMock, isConfirmed: false, checked: false },
         { question: this.question2Mock, answers: this.answers2Mock, isConfirmed: false, checked: false }];
@@ -105,6 +122,19 @@ export class TestsPage {
         }
 
         this.resultadoNota = this.gradeService.calculateGrade(this.successes ?? 0, this.mistakes ?? 0, this.nQuestions ?? 0, this.totalOptions);
+
+    }
+    confirmSelectionWithIndex(i:number,result:boolean) {
+        if (this.questionsAnswer[i].checked) {
+            this.questionsAnswer[i].isConfirmed = true;
+            this.questionsAnswer[i].isSuccess = result;
+
+        } else {
+            this.globalsService.showToast("Por favor, seleccione una respuesta");
+        }
+
+        this.resultadoNota = this.gradeService.calculateGrade(this.successes ?? 0, this.mistakes ?? 0, this.nQuestions ?? 0, this.totalOptions);
+
     }
     next() {
         this.positionNow++;
@@ -124,7 +154,37 @@ export class TestsPage {
     changeChecked(checked: boolean) {
         this.currentQuestionAnswer.checked = checked;
     }
-    changeResult($event?: boolean) {
-        this.result = $event;
+    changeCheckedAllQuestions(checked: boolean,index: number) {
+        this.questionsAnswer[index].checked = checked;
+    }
+    changeResult($event?: boolean){
+        this.result=$event;
+        if (this.oneTouch) {
+            this.confirmSelection();
+        }
+    }
+    changeResultWithIndex( index:number,$event?: boolean) {
+        if (this.oneTouch) {
+            this.confirmSelectionWithIndex(index,$event??false);
+        }
+        this.questionsAnswer[index].result = $event;
+    }
+    changeOneTouch(event: boolean) {
+        this.oneTouch = event;
+    }
+    changeViewGrade(event: boolean) {
+        this.viewGrade = event;
+    }
+    changeViewAllQuestions(event: boolean) {
+        this.viewAllQuestions = event;
+    }
+    changeSaveInit(event: boolean) {
+        this.saveInit = event;
+    }
+    initTest() {
+        console.log(this.oneTouch)
+        console.log(this.viewGrade)
+        console.log(this.viewAllQuestions)
+        this.testStarted = true;
     }
 }

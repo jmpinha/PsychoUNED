@@ -7,7 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { IonicModule } from '@ionic/angular';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ToastController } from '@ionic/angular';
-import { GlobalsService } from 'src/app/services/Globals.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 import { heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 

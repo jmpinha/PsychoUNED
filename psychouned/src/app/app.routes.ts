@@ -20,11 +20,11 @@ export const routes: Routes = [
     //     loadComponent: () =>
     //         import('./pages/notes/component/notes.page').then((m) => m.NotesPage),
     // },
-    // {
-    //     path: 'tests',
-    //     loadComponent: () =>
-    //         import('./pages/tests/component/tests.page').then((m) => m.TestsPage),
-    // },
+    {
+        path: 'tests',
+        loadComponent: () =>
+            import('./pages/tests/component/tests.page').then((m) => m.TestsPage),
+    },
     {
         path: 'calculadora',
         loadComponent: () =>

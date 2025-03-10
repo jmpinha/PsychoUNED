@@ -4,20 +4,51 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Test: {{positionNow+1}}/{{nQuestions}}</ion-title>
+    <ion-title>Test <span *ngIf="testStarted&&!viewAllQuestions">
+        {{positionNow+1}}/{{nQuestions}}
+      </span></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <app-grade [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="resultadoNota"></app-grade>
+  <app-init-test [oneTouch]="oneTouch" [viewGrade]="viewGrade" [viewAllQuestions]="viewAllQuestions"
+    (oneTouchOut)="changeOneTouch($event)" (viewGradeOut)="changeViewGrade($event)"
+    (viewAllQuestionsOut)="changeViewAllQuestions($event)" (saveInit)="changeSaveInit($event)"
+    *ngIf="!testStarted"></app-init-test>
+  <app-grade [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="resultadoNota"
+    [viewGrade]="viewGrade" *ngIf="testStarted"></app-grade>
+
+
   <app-question (questionAnswerChange)="changeChecked($event)" (result2)="changeResult($event)"
-    [questionAnswer]="currentQuestionAnswer"></app-question>
+    [questionAnswer]="currentQuestionAnswer" *ngIf="testStarted&&!viewAllQuestions"
+    [numberQuestion]="positionNow+1"></app-question>
+
+
+  <ion-list *ngIf="testStarted&&viewAllQuestions" class="list-questions" lines="none">
+    @for (questionAnswer of questionsAnswer; track questionAnswer; let i = $index) {
+    <ion-item class="item-question">
+      <app-question (questionAnswerChange)="changeCheckedAllQuestions($event,i)"
+        (result2)="changeResultWithIndex(i,$event)" [questionAnswer]="questionAnswer"
+        [numberQuestion]="i+1"></app-question>
+
+    </ion-item>
+    <div class="content-button">
+
+      <ion-button class="button-center" *ngIf="!oneTouch"
+        (click)="confirmSelectionWithIndex(i, questionAnswer.result??false)">Corregir
+        pregunta {{i+1}}</ion-button>
+    </div>
+    <ion-item-divider></ion-item-divider>
+    }
+  </ion-list>
+
 </ion-content>
 <ion-footer class="footer">
 
   <ion-button [style.visibility]="positionNow>0 ? 'visible' : 'hidden'" (click)="back()">ATRAS</ion-button>
-  <ion-button (click)="confirmSelection()" *ngIf="checkedButton">CORREGIR</ion-button>
-  <ion-button (click)="next()" *ngIf="positionNow<(nQuestions-1)">SIGUIENTE</ion-button>
+  <ion-button (click)="confirmSelection()" *ngIf="!oneTouch&&testStarted&&!viewAllQuestions">CORREGIR</ion-button>
+  <ion-button (click)="initTest()" *ngIf="!testStarted">Empezar test</ion-button>
+  <ion-button (click)="next()" [style.visibility]="testStarted&&!viewAllQuestions? 'visible' : 'hidden'"
+    *ngIf="positionNow<(nQuestions-1)">SIGUIENTE</ion-button>
   <ion-button *ngIf="positionNow===(nQuestions-1)">FINALIZAR</ion-button>
 </ion-footer>

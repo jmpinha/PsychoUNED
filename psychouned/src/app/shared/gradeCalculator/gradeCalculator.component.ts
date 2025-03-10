@@ -3,13 +3,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MatInputModule } from '@angular/material/input';
-import { GlobalsService } from 'src/app/services/Globals.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 import { Grade } from 'src/app/models/Grade';
-import { GradeService } from 'src/app/services/Grade.service';
+import { GradeService } from 'src/app/services/grade.service';
 import { MatIconModule } from '@angular/material/icon';
 import { InputComponentComponent } from '../input-component/input-component.component';
 import {MatSelectModule} from '@angular/material/select';
 import { SelectComponentComponent } from '../select-component/select-component.component';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-grade-calculator',
@@ -51,8 +52,12 @@ export class GradeCalculatorComponent {
     get answersBlank() {
         return Number(this.answersBlankForm.value);
     }
+    get getTheme(){
+        return this.themeService.isDarkMode();
+    }
     constructor(private gradeService: GradeService,
-        private globalsService: GlobalsService
+        private globalsService: GlobalsService,
+        private themeService: ThemeService
     ) { }
 
     submit() {

@@ -18,6 +18,10 @@
                     }
                 </ion-list>
             </ion-content>
+            <ion-item>
+                <ion-label>Modo oscuro</ion-label>
+                <ion-toggle (ionChange)="toggleDarkMode($event)" [checked]="getTheme"></ion-toggle>
+              </ion-item>
         </ion-menu>
         <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>

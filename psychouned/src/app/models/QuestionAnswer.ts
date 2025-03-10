@@ -6,4 +6,5 @@ export interface QuestionsAnswer {
     isConfirmed: boolean;
     checked: boolean;
     isSuccess?: boolean;
+    result?: boolean;
 }

@@ -1,10 +1,11 @@
-  <p>{{questionAnswer.question}}</p>
+  <p>{{numberQuestion}}. {{questionAnswer.question}}</p>
   <ion-list class="list" lines="none">
     <ion-item *ngFor="let  item of questionAnswer.answers; let i = index"> 
       <mat-checkbox 
     [ngClass]="{'correct': item.checked && item.answerCorrect&&questionAnswer.isConfirmed,
-    'error': item.checked && !item.answerCorrect&&questionAnswer.isConfirmed,}"
+    'error': item.checked && !item.answerCorrect&&questionAnswer.isConfirmed}" class="chk-question-dark "
      [checked]="item.checked" [disabled]="questionAnswer.isConfirmed" (change)="onCheckboxChange($event,i,item.answerCorrect)">
+     
         <span>
           {{utils.loadLetter(i)}} {{ item.answer }}
         </span>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GlobalsService } from './Globals.service';
+import { GlobalsService } from './globals.service';
 
 @Injectable({
     providedIn: 'root'

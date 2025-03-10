@@ -1,0 +1,51 @@
+
+.list {
+    margin: 10px;
+    border-radius: 10px;
+    --mat-checkbox-disabled-label-color:white;
+    --mdc-checkbox-disabled-unselected-icon-color: white;
+    --mat-checkbox-disabled-icon-color: white;
+}
+
+p {
+    margin: 10px;
+}
+
+.correct {
+  --mat-checkbox-disabled-label-color:green;
+  --mdc-checkbox-disabled-selected-icon-color: green;
+}
+
+.error {
+  --mat-checkbox-disabled-label-color:red;
+  --mdc-checkbox-disabled-selected-icon-color: red;
+  
+
+
+}
+.checkbox-icon {
+  margin-top: 5px;
+  font-size: 20px;
+  color: white;
+  background-color: red;
+  width: 18px;
+  height: 18px;
+}
+::ng-deep .error .mat-checkbox-checked .mat-checkbox-inner-container::after {
+  content: "X";
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mat-checkbox-input:not(:checked) {
+    border-color: #FF5722; /* Cuando está deseleccionado, cambiar el color */
+  }
+.chk-question-dark {
+    --mat-checkbox-label-text-color:white;
+    --mat-sys-on-surface-variant:white;
+    --mdc-checkbox-unselected-icon-color: white;
+}
