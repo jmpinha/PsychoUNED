@@ -11,10 +11,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <app-test-select *ngIf="!idExam" (examId)="getExamId($event)"></app-test-select> 
   <app-test-init [oneTouch]="oneTouch" [viewGrade]="viewGrade" [viewAllQuestions]="viewAllQuestions"
     (oneTouchOut)="changeOneTouch($event)" (viewGradeOut)="changeViewGrade($event)"
     (viewAllQuestionsOut)="changeViewAllQuestions($event)" (saveInit)="changeSaveInit($event)"
-    *ngIf="!testStarted"></app-test-init>
+    *ngIf="!testStarted &&idExam"></app-test-init>
   <app-grade [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="resultadoNota"
     [viewGrade]="viewGrade" *ngIf="testStarted"></app-grade>
 

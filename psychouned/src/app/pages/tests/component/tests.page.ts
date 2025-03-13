@@ -14,6 +14,7 @@ import { GradeService } from 'src/app/services/grade.service';
 import { InitTestComponent } from 'src/app/components/test-components/test-init/test-init.component';
 import { IonButton,IonFooter,IonItemDivider,IonItem,IonList,IonContent,IonTitle,IonMenuButton,IonButtons,IonToolbar,IonHeader} from '@ionic/angular/standalone';
 import { GradeComponent } from 'src/app/components/grade-components/grade/grade.component';
+import { TestSelectComponent } from 'src/app/components/test-components/test-select/test-select.component';
 
 @Component({
     selector: 'app-tests',
@@ -34,7 +35,8 @@ import { GradeComponent } from 'src/app/components/grade-components/grade/grade.
         IonHeader,
         QuestionComponent,
         GradeComponent,
-        InitTestComponent
+        InitTestComponent,
+        TestSelectComponent
     ],
 })
 export class TestsPage {
@@ -90,6 +92,7 @@ export class TestsPage {
     positionNow = 0;
     result?: boolean;
     totalOptions = this.questionsAnswer[0].answers.length;
+    idExam=0;
     get currentQuestionAnswer(): QuestionsAnswer {
         return this.questionsAnswer[this.positionNow];
     }
@@ -186,5 +189,8 @@ export class TestsPage {
         console.log(this.viewGrade)
         console.log(this.viewAllQuestions)
         this.testStarted = true;
+    }
+    getExamId(event: number) {
+        this.idExam=event;
     }
 }

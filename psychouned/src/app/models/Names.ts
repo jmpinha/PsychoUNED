@@ -1,6 +1,7 @@
 export enum MenuNames {
     SUBJECTS = 'Asignaturas',
     TESTS = 'Tests',
+    ADD_DATA = 'Añadir datos',
     NOTES = 'Apuntes',
     FORUM = 'Foro',
     GRADES = 'Calculadora de notas',
@@ -28,4 +29,20 @@ export enum SubjectsName {
     ATENTION = 'Psicología de la atención',
     LEARNING = 'Psicología del aprendizaje',
     HISTORY = 'Historia de la psicología',
+}
+export interface PartialExamns{
+    week: number;
+    weekDescription: string;
+}
+export enum DateExamsEnum {
+    FIRST_WEEK = 'Primera semana',
+    SECOND_WEEK = 'Segunda semana',
+    SEPTEMBER= 'Septiembre',
+}
+export class DateExams{
+    static exams:PartialExamns[]=[
+        {week:1,weekDescription:DateExamsEnum.FIRST_WEEK},
+        {week:2,weekDescription:DateExamsEnum.SECOND_WEEK},
+        {week:3,weekDescription:DateExamsEnum.SEPTEMBER},
+    ]
 }

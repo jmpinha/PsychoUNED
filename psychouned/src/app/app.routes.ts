@@ -10,11 +10,16 @@ export const routes: Routes = [
         redirectTo: 'calculadora',
         pathMatch: 'full',
     },
-    // {
-    //     path: 'subjects',
-    //     loadComponent: () =>
-    //         import('./pages/subjects/component/subjects.page').then((m) => m.SubjectsPage),
-    // },
+    {
+        path: 'nuevosDatos',
+        loadComponent: () =>
+            import('./pages/add-data/component/add-data.page').then((m) => m.AddDataPage),
+    },
+    {
+        path: 'asignaturas',
+        loadComponent: () =>
+            import('./pages/subjects/component/subjects.page').then((m) => m.SubjectsPage),
+    },
     // {
     //     path: 'notes',
     //     loadComponent: () =>
@@ -29,7 +34,11 @@ export const routes: Routes = [
         path: 'calculadora',
         loadComponent: () =>
             import('./pages/grades/component/grades.page').then((m) => m.GradesPage),
-    }
+    },
+  {
+    path: 'add-data',
+    loadComponent: () => import('./pages/add-data/component/add-data.page').then( m => m.AddDataPage)
+  }
 ];
 @NgModule({
     imports: [
