@@ -6,9 +6,8 @@ import { GradeCalculatorComponent } from 'src/app/components/grade-components/gr
 import { Grade } from 'src/app/models/Grade';
 
 @Component({
-    selector: 'app-grades',
-    templateUrl: './grades.page.html',
-    styleUrls: ['./grades.page.css'],
+    templateUrl: './grades-page.component.html',
+    styleUrls: ['./grades-page.component.css'],
     imports: [
         CommonModule,
         IonicModule,
@@ -16,7 +15,7 @@ import { Grade } from 'src/app/models/Grade';
         GradeComponent
     ],
 })
-export class GradesPage {
+export class GradesPageComponent {
     successes = 0;
     mistakes = 0;
     notAnswered = 0;

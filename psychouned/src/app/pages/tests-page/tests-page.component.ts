@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { TestsPageRoutingModule } from '../tests-routing.module';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { addIcons } from 'ionicons';
-import { checkmarkCircle, closeCircle } from 'ionicons/icons';
-import { QuestionComponent } from "../../../components/test-components/test-question/test-question.component";
+import { QuestionComponent } from "../../components/test-components/test-question/test-question.component";
 import { Answer } from 'src/app/models/Answer';
 import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
 import { GlobalsService } from 'src/app/services/globals.service';
@@ -17,9 +11,8 @@ import { GradeComponent } from 'src/app/components/grade-components/grade/grade.
 import { TestSelectComponent } from 'src/app/components/test-components/test-select/test-select.component';
 
 @Component({
-    selector: 'app-tests',
-    templateUrl: './tests.page.html',
-    styleUrls: ['./tests.page.scss'],
+    templateUrl: './tests-page.component.html',
+    styleUrls: ['./tests-page.component.scss'],
     imports: [
         CommonModule,
         IonButton,
@@ -39,7 +32,7 @@ import { TestSelectComponent } from 'src/app/components/test-components/test-sel
         TestSelectComponent
     ],
 })
-export class TestsPage {
+export class TestsPageComponent {
 
     questionMock = "El valor relacional:";
     answersMock: Answer[] = [

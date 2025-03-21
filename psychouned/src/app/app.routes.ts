@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SubjectsPage } from './pages/subjects/component/subjects.page';
-import { NotesPage } from './pages/notes/component/notes.page';
-import { TestsPage } from './pages/tests/component/tests.page';
+import { NotesPageComponent } from './pages/notes/notes-page.component';
+import { SubjectsPage } from './pages/subjects/subjects-page.component';
+import { AddDataPageComponent } from './pages/add-data/add-data.page';
+import { TestsPageComponent } from './pages/tests/tests-page.component';
 
 export const routes: Routes = [
     {
@@ -12,33 +13,25 @@ export const routes: Routes = [
     },
     {
         path: 'nuevosDatos',
-        loadComponent: () =>
-            import('./pages/add-data/component/add-data.page').then((m) => m.AddDataPage),
+        component: AddDataPageComponent
     },
     {
         path: 'asignaturas',
-        loadComponent: () =>
-            import('./pages/subjects/component/subjects.page').then((m) => m.SubjectsPage),
+        component:SubjectsPage
+    },
+    {
+        path: 'tests',
+        component:TestsPageComponent
+    },
+    {
+        path: 'calculadora',
+        component:NotesPageComponent
     },
     // {
     //     path: 'notes',
     //     loadComponent: () =>
     //         import('./pages/notes/component/notes.page').then((m) => m.NotesPage),
     // },
-    {
-        path: 'tests',
-        loadComponent: () =>
-            import('./pages/tests/component/tests.page').then((m) => m.TestsPage),
-    },
-    {
-        path: 'calculadora',
-        loadComponent: () =>
-            import('./pages/grades/component/grades.page').then((m) => m.GradesPage),
-    },
-  {
-    path: 'add-data',
-    loadComponent: () => import('./pages/add-data/component/add-data.page').then( m => m.AddDataPage)
-  }
 ];
 @NgModule({
     imports: [

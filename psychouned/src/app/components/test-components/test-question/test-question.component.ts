@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
-import { TestsPageRoutingModule } from 'src/app/pages/tests/tests-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
 import { GlobalsService } from 'src/app/services/globals.service';
@@ -16,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     FormsModule,
     IonicModule,
-    TestsPageRoutingModule,
     MatCheckboxModule,
     MatIconModule
   ],

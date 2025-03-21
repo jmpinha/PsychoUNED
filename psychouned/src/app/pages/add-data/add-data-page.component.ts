@@ -5,17 +5,13 @@ import { IonContent, IonHeader, IonTitle, IonToolbar,IonButton } from '@ionic/an
 import { InputComponentComponent } from 'src/app/components/common/input-component/input-component.component';
 
 @Component({
-  selector: 'app-add-data',
-  templateUrl: './add-data.page.html',
-  styleUrls: ['./add-data.page.scss'],
+  templateUrl: './add-data-page.component.html',
+  styleUrls: ['./add-data-page.component.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar,IonButton, CommonModule, FormsModule,InputComponentComponent]
 })
-export class AddDataPage implements OnInit {
+export class AddDataPageComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

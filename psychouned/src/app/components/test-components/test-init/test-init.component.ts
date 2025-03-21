@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { TestsPageRoutingModule } from 'src/app/pages/tests/tests-routing.module';
 import { IonicModule } from '@ionic/angular';
-import { IonToggle } from '@ionic/angular/standalone';
 
 @Component({
 	selector: 'app-test-init',
@@ -14,7 +12,6 @@ import { IonToggle } from '@ionic/angular/standalone';
 		CommonModule,
 		FormsModule,
 		IonicModule,
-		TestsPageRoutingModule,
 		MatCheckboxModule,
 		ReactiveFormsModule,
 	],

@@ -4,20 +4,18 @@ import { MenuNames } from 'src/app/models/Names';
 
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { NotesPageRoutingModule } from '../notes-routing.module';
 
 @Component({
   selector: 'app-notes',
-  templateUrl: './notes.page.html',
-  styleUrls: ['./notes.page.scss'],
+  templateUrl: './notes-page.component.html',
+  styleUrls: ['./notes-page.component.scss'],
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    NotesPageRoutingModule
+    IonicModule
   ],
 })
-export class NotesPage {
+export class NotesPageComponent {
   subjectsNames = MenuNames;
   constructor() { }
 

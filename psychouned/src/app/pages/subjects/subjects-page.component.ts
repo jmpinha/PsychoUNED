@@ -1,25 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Courses, Semester, SubjectsName } from 'src/app/models/Names';
-import { SubjectsPageRoutingModule } from '../subjects-routing.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IonicModule } from '@ionic/angular';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ToastController } from '@ionic/angular';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
 @Component({
-  selector: 'app-subjects',
-  templateUrl: './subjects.page.html',
-  styleUrls: ['./subjects.page.scss'],
+  templateUrl: './subjects-page.component.html',
+  styleUrls: ['./subjects-page.component.scss'],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SubjectsPageRoutingModule,
     MatTabsModule,
   ],
   animations: [
@@ -60,7 +56,7 @@ export class SubjectsPage {
     );
   }
 
-  constructor(private globalsService: GlobalsService) { 
+  constructor(private globalsService: GlobalsService) {
       addIcons({ heartOutline});}
 
   showToast(word: string) {
