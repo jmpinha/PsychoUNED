@@ -34,23 +34,35 @@ namespace PsychoUnedApi.Controllers
 
         // GET: Asignaturas/Details/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
+            Asignaturas? asignaturas =new Asignaturas();
             if (id == null)
             {
                 return NotFound("No Existe el id");
             }
-            return Ok(await _asignaturasService.GetAsignatura(id));
+            using (var context = new MiDbContext())
+            {
+
+                asignaturas = context.Asignaturas
+                    .FirstOrDefault(m => m.Id == id);
+
+            }
+
+            return Ok(asignaturas);
         }
 
         [HttpPost]
         public IActionResult Create(Asignaturas asignaturas)
         {
-            var x = 0;
             if (ModelState.IsValid)
             {
-               _asignaturasService.CreateAsignatura(asignaturas);
-                return Ok(asignaturas);
+                using (var context = new MiDbContext())
+                {
+                    context.Add(asignaturas);
+                    context.SaveChanges();
+                    return Ok(asignaturas);
+                }
             }
             return Ok();
         }
