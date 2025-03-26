@@ -1,0 +1,22 @@
+
+<mat-tab-group class="years" [selectedIndex]="years.length-1" [@translateTab] animationDuration="250ms" (selectedIndexChange)="changeYear($event)">
+  <mat-tab *ngFor="let year of years">
+    <ng-template mat-tab-label>
+      <span class="text-white">{{year}}</span>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+<!-- 
+<mat-tab-group class="years" animationDuration="250ms">
+  <mat-tab *ngFor="let semester of semesters" >
+    <ng-template mat-tab-label>
+      <span class="text-white">{{semester.semesterDescription}}</span>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group> 
+-->
+<ion-list class="list" lines="none">
+  <ion-item *ngFor="let item of dateExams" (click)="selectDateExam()">
+    {{ item.weekDescription}}
+  </ion-item>
+</ion-list>

@@ -1,0 +1,18 @@
+<form [ngClass]="getTheme? 'dark-form':'white-form'" class="general-form">
+  <app-input-component [optionForm]="totalQuestionsForm" [label]="'Total de preguntas'" class="custom-input"
+    (optionResponse)="changeQuestion($event)">
+  </app-input-component>
+  <app-select-component [optionForm]="totalOptionsForm" [options]="options" class="custom-input"
+    [label]="'Total de opciones'" (optionSelected)="changeOptions($event)" ></app-select-component>
+  <app-input-component [optionForm]="successesForm" [label]="'Aciertos'" class="custom-input"
+    (optionResponse)="changeSuccess($event)">
+  </app-input-component>
+  <app-input-component [optionForm]="mistakesForm" [label]="'Fallos'" class="custom-input"
+    (optionResponse)="changeMistakes($event)">
+  </app-input-component>
+  <app-input-component [optionForm]="answersBlankForm" [label]="'En Blanco'" class="custom-input"
+    (optionResponse)="changeAnswerBlank($event)">
+  </app-input-component>
+  <ion-button (click)="submit()">Resultado</ion-button>
+
+</form>

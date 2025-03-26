@@ -1,0 +1,11 @@
+
+<mat-form-field  class="input-class">
+  <mat-label class="lbl-title">Total de opciones</mat-label>
+  <mat-select [formControl]="optionForm()" name="food"  (selectionChange)="changeOptions($event)">
+
+    @for (option of options(); track option) {
+      <mat-option [value]="option">{{option}}</mat-option>
+    }
+
+  </mat-select>
+</mat-form-field>

@@ -1,0 +1,35 @@
+<p>Opciones para el test</p>
+<ion-list class="list" lines="none">
+  <ion-item class="item-toggle-init-test">
+
+    <ion-toggle (ionChange)="changeOneTouch($event)" [checked]="oneTouch" labelPlacement="end">
+      {{getLblOneTouch}}
+    </ion-toggle>
+
+  </ion-item>
+  
+  <ion-item class="item-toggle-init-test">
+
+    <ion-toggle (ionChange)="changeViewGrade($event)" [checked]="viewGrade" labelPlacement="end">
+      {{getLblViewGrade}}
+    </ion-toggle>
+
+  </ion-item>
+  
+  <ion-item class="item-toggle-init-test">
+
+    <ion-toggle (ionChange)="changeViewAllQuestions($event)" [checked]="viewAllQuestions" labelPlacement="end">
+      {{getLblViewAllQuestions}}
+    </ion-toggle>
+
+  </ion-item>
+  <ion-item class="item-toggle-init-test">
+    <mat-checkbox  class="chk-question-dark "
+     (change)="onCheckboxChange($event)">
+     
+          Guardar y no volver a preguntar
+
+      </mat-checkbox>
+
+  </ion-item>
+</ion-list>

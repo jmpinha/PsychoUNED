@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SubjectsPage } from './pages/subjects/component/subjects.page';
-import { NotesPage } from './pages/notes/component/notes.page';
-import { TestsPage } from './pages/tests/component/tests.page';
+import { NotesPageComponent } from './pages/notes/notes-page.component';
+import { SubjectsPage } from './pages/subjects/subjects-page.component';
+import { AddDataPageComponent } from './pages/add-data/add-data-page.component';
+import { TestsPageComponent } from './pages/tests-page/tests-page.component';
+import { GradesPageComponent } from './pages/grades/grades-page.component';
 
 export const routes: Routes = [
     {
@@ -10,26 +12,27 @@ export const routes: Routes = [
         redirectTo: 'calculadora',
         pathMatch: 'full',
     },
-    // {
-    //     path: 'subjects',
-    //     loadComponent: () =>
-    //         import('./pages/subjects/component/subjects.page').then((m) => m.SubjectsPage),
-    // },
+    {
+        path: 'nuevosDatos',
+        component: AddDataPageComponent
+    },
+    {
+        path: 'asignaturas',
+        component:SubjectsPage
+    },
+    {
+        path: 'tests',
+        component:TestsPageComponent
+    },
+    {
+        path: 'calculadora',
+        component:GradesPageComponent
+    },
     // {
     //     path: 'notes',
     //     loadComponent: () =>
     //         import('./pages/notes/component/notes.page').then((m) => m.NotesPage),
     // },
-    // {
-    //     path: 'tests',
-    //     loadComponent: () =>
-    //         import('./pages/tests/component/tests.page').then((m) => m.TestsPage),
-    // },
-    {
-        path: 'calculadora',
-        loadComponent: () =>
-            import('./pages/grades/component/grades.page').then((m) => m.GradesPage),
-    }
 ];
 @NgModule({
     imports: [

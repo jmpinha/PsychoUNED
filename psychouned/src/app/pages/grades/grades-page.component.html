@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Calculadora de notas</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <grade-calculator  (gradeOut)="calculateGrade($event)"></grade-calculator>
+    <grade [viewGrade]="true" [successes]="successes" [mistakes]="mistakes" [notAnswered]="notAnswered" [grade]="grade"></grade>
+</ion-content>

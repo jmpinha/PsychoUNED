@@ -1,0 +1,16 @@
+.years{
+    --mat-tab-header-inactive-label-text-color: #ffffff;
+    --mat-tab-header-pagination-icon-color: white;
+    --mat-tab-header-inactive-hover-label-text-color: rgb(255 255 255 / 60%);
+}
+.list {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.list ion-item:last-child::after {
+    border-bottom: none !important;
+}
+::ng-deep .mdc-tab{
+    min-width: 50px !important;
+}

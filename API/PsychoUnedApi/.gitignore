@@ -1,0 +1,93 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]eploy/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+
+# User-specific files
+.vscode/
+.idea/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer logs
+*.log
+
+# Windows Installer patches
+*.wixpdb
+
+# Windows Installer UI Configuration files
+*.wxs
+
+# .NET Core files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET Core generated files
+.vs2019/
+.vs2017/
+
+# User-specific files
+.idea/
+.vscode/
+
+# User-specific JetBrains Rider config
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# npm
+node_modules/
+
+# dotenv files
+.env
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# ASP.NET Core
+wwwroot/
+
+# Web Essentials
+node_modules/
+bower_components/
+
+# .NET Core
+bin/
+obj/
+
+# Windows Installer
+*.cab
+*.msi
+*.msm
+*.msp
+
+# .NET Build Results
+bin/
+obj/
+
+# VSCode Settings folder
+.vscode/
+.vs/
+
+# .NET project settings
+.vs2019/
+.vs2017/

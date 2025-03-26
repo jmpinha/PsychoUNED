@@ -1,0 +1,50 @@
+.list {
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.list-questions {
+    background-color: transparent;
+}
+
+.button-center {
+    text-align: center;
+    /* Alternativa más simple */
+    margin-bottom: 10px;
+
+}
+:host ::ng-deep ion-item-divider {
+    min-height: 10px; /* Cambiar el min-height */
+  }
+.content-button {
+    display: flex;
+    justify-content: center;
+}
+
+.item-question {
+
+    --background: transparent;
+}
+
+.item-question .input-wrapper {
+    flex-direction: column;
+}
+
+p {
+    margin: 10px;
+}
+
+.correct {
+    color: green;
+}
+
+.error {
+    color: red;
+
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+
+}

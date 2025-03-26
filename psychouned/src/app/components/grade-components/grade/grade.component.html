@@ -1,0 +1,13 @@
+
+<ion-title>
+  Aciertos: {{successes()}}
+</ion-title>
+<ion-title>
+  Fallos: {{mistakes()}}
+</ion-title>
+<ion-title>
+  En blanco: {{notAnswered()}}
+</ion-title>
+<ion-title *ngIf="viewGrade">
+  Nota: {{grade()}}
+</ion-title>
