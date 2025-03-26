@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { GradeComponent } from '../../grade-components/grade/grade.component';
 
 @Component({
-    selector: 'app-test-finish',
+    selector: 'test-finish',
     templateUrl: './test-finish.component.html',
     styleUrls: ['./test-finish.component.scss'],
 

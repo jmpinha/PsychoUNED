@@ -5,7 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-	selector: 'app-test-init',
+	selector: 'test-init',
 	templateUrl: './test-init.component.html',
 	styleUrls: ['./test-init.component.scss'],
 	imports: [

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, input } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { IonicModule } from '@ionic/angular';
@@ -18,9 +18,9 @@ import { IonicModule } from '@ionic/angular';
 })
 export class SelectComponentComponent {
 
-    @Input() optionForm = new FormControl();
-    @Input() options: any = [];
-    @Input() label = '';
+     optionForm = input(new FormControl());
+     options: any = input([]);
+     label = input('');
     @Output() optionSelected= new EventEmitter<any>();
     constructor() { }
     changeOptions(event:any){

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { QuestionComponent } from "../../components/test-components/test-question/test-question.component";
 import { Answer } from 'src/app/models/Answer';
-import { QuestionsAnswer } from 'src/app/models/QuestionAnswer';
+import { QuestionsAnswer } from 'src/app/models/QuestionAnswer.interface';
 import { GlobalsService } from 'src/app/services/globals.service';
 import { GradeService } from 'src/app/services/grade.service';
 import { InitTestComponent } from 'src/app/components/test-components/test-init/test-init.component';
@@ -71,7 +71,7 @@ export class TestsPageComponent {
         }
     ];
 
-
+subjectId=signal(0);
     oneTouch = false;
     viewGrade = false;
     viewAllQuestions = false;

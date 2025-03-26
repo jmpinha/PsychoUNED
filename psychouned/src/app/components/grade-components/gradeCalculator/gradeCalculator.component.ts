@@ -4,7 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { IonicModule } from '@ionic/angular';
 import { MatInputModule } from '@angular/material/input';
 import { GlobalsService } from 'src/app/services/globals.service';
-import { Grade } from 'src/app/models/Grade';
+import { Grade } from 'src/app/models/Grade.interface';
 import { GradeService } from 'src/app/services/grade.service';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
@@ -13,7 +13,7 @@ import { InputComponentComponent } from 'src/app/components/common/input-compone
 import { SelectComponentComponent } from 'src/app/components/common/select-component/select-component.component';
 
 @Component({
-    selector: 'app-grade-calculator',
+    selector: 'grade-calculator',
     templateUrl: './gradeCalculator.component.html',
     styleUrls: ['./gradeCalculator.component.css'],
     imports: [

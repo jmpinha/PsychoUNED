@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-grade',
+  selector: 'grade',
   templateUrl: './grade.component.html',
   styleUrls: ['./grade.component.css'],
 
@@ -14,12 +14,12 @@ import { IonicModule } from '@ionic/angular';
 })
 export class GradeComponent {
 
-  @Input() successes = 0;
-  @Input() mistakes = 0;
-  @Input() notAnswered = 0;
-  @Input() viewGrade = false;
-  @Input() grade = 0;
-  
+  successes = input<number>();
+  mistakes = input<number>();
+  notAnswered = input<number>();
+  viewGrade = input<boolean>(false);
+  grade = input<number>();
+
   constructor() { }
 
 }

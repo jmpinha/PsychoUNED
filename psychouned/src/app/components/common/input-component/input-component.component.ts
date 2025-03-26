@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, computed, EventEmitter, input, Input, OnChanges, OnInit, output, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -20,12 +20,12 @@ import { IonicModule } from '@ionic/angular';
     ],
 })
 export class InputComponentComponent implements OnChanges {
-    @Input() optionForm= new FormControl();
-    @Input() label='';
-    @Output() optionResponse= new EventEmitter<number>();;
-    get option() {
-        return Number(this.optionForm.value);
-    }
+    optionForm= input(new FormControl());
+    label=input<string>('');
+    optionResponse= output<number>();;
+    option=computed(()=> {
+        return Number(this.optionForm().value);
+    })
     ngOnChanges(changes: SimpleChanges) {
         if (changes['optionsForm']) {
           console.log('Cambio detectado en mensaje:', changes['mensaje'].currentValue);
@@ -42,7 +42,7 @@ export class InputComponentComponent implements OnChanges {
     }
     inputBlur(){
         if(this.option){
-            this.optionResponse.emit(this.option);
+            this.optionResponse.emit(this.option());
         }
     }
 }

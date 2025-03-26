@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddDataPageComponent } from './add-data.page';
+import { AddDataPageComponent } from './add-data';
 
 describe('AddDataPage', () => {
   let component: AddDataPageComponent;

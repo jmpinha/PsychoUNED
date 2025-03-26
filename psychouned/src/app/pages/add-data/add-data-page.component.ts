@@ -8,7 +8,7 @@ import { InputComponentComponent } from 'src/app/components/common/input-compone
   templateUrl: './add-data-page.component.html',
   styleUrls: ['./add-data-page.component.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar,IonButton, CommonModule, FormsModule,InputComponentComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar,IonButton, CommonModule, FormsModule]
 })
 export class AddDataPageComponent {
 
