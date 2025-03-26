@@ -23,5 +23,11 @@ namespace PsychoUnedApi.Services
         {
             return await _context.Asignaturas.ToListAsync();
         }
+        public async Task<Asignaturas?> GetAsignatura(int? id)
+        {
+
+            return await _context.Asignaturas
+                .FirstOrDefaultAsync(m => m.Id == id);
+        }
     }
 }

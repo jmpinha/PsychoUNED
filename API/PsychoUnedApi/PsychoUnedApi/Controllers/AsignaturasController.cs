@@ -24,7 +24,7 @@ namespace PsychoUnedApi.Controllers
             _logger = logger;
             _asignaturasService = asignaturasService;
         }
-        [HttpGet(Name ="Test")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _asignaturasService.GetAllAsignaturas());
@@ -34,22 +34,13 @@ namespace PsychoUnedApi.Controllers
 
         // GET: Asignaturas/Details/5
         [HttpGet("{id}")]
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
-            Asignaturas? asignaturas =new Asignaturas();
             if (id == null)
             {
                 return NotFound("No Existe el id");
             }
-            using (var context = new MiDbContext())
-            {
-
-                asignaturas = context.Asignaturas
-                    .FirstOrDefault(m => m.Id == id);
-
-            }
-
-            return Ok(asignaturas);
+            return Ok(await _asignaturasService.GetAsignatura(id));
         }
 
         [HttpPost]
@@ -58,12 +49,8 @@ namespace PsychoUnedApi.Controllers
             var x = 0;
             if (ModelState.IsValid)
             {
-                using (var context = new MiDbContext())
-                {
-                    context.Add(asignaturas);
-                    context.SaveChanges();
-                    return Ok(asignaturas);
-                }
+               _asignaturasService.CreateAsignatura(asignaturas);
+                return Ok(asignaturas);
             }
             return Ok();
         }
