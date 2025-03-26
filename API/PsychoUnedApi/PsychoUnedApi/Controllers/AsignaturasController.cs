@@ -24,7 +24,7 @@ namespace PsychoUnedApi.Controllers
             _logger = logger;
             _asignaturasService = asignaturasService;
         }
-        [HttpGet(Name ="Test")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _asignaturasService.GetAllAsignaturas());
@@ -55,7 +55,6 @@ namespace PsychoUnedApi.Controllers
         [HttpPost]
         public IActionResult Create(Asignaturas asignaturas)
         {
-            var x = 0;
             if (ModelState.IsValid)
             {
                 using (var context = new MiDbContext())
