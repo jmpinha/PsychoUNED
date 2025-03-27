@@ -23,33 +23,33 @@ namespace PsychoUnedApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var asignaturas = await _asignaturasService.GetAllAsignaturas();
+            var asignaturas = await _asignaturasService.GetAllSubjectAsync();
             return Ok(asignaturas);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
-            var asignatura = await _asignaturasService.get(id);
+            var asignatura = await _asignaturasService.GetSubjectAsync(id);
             if (asignatura == null) return NotFoundResponse(id);
             return Ok(asignatura);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Asignaturas asignatura)
+        public async Task<IActionResult> Create([FromBody] Subject asignatura)
         {
             if (asignatura == null) return BadRequest("Los datos de la asignatura son inválidos.");
 
-            var creada = await _asignaturasService.CreateAsignatura(asignatura);
+            var creada = await _asignaturasService.AddSubjectAsync(asignatura);
             return CreatedAtAction(nameof(Details), new { id = creada.Id }, creada);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, [FromBody] Asignaturas asignatura)
+        public async Task<IActionResult> Edit(int id, [FromBody] Subject asignatura)
         {
             if (id != asignatura.Id) return BadRequest("El ID de la URL y el de la asignatura no coinciden.");
 
-            var actualizada = await _asignaturasService.UpdateAsignatura(asignatura);
+            var actualizada = await _asignaturasService.UpdateSubjectAsync(asignatura);
             if (actualizada == null) return NotFoundResponse(id);
 
             return Ok(actualizada);
@@ -58,10 +58,10 @@ namespace PsychoUnedApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var asignatura = await _asignaturasService.GetAsignatura(id);
+            var asignatura = await _asignaturasService.GetSubjectAsync(id);
             if (asignatura == null) return NotFound($"No se encontró la asignatura con ID {id}.");
 
-            await _asignaturasService.DeleteAsignatura(id);
+            await _asignaturasService.DeleteSubjectAsync(id);
             return NoContent();
         }
 

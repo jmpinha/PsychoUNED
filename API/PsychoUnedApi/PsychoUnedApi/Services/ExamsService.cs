@@ -6,45 +6,45 @@ namespace PsychoUnedApi.Services
 {
     public class ExamsService: IExamsService
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ExamsService(AppDbContext context)
+        public ExamsService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<List<Examenes>> GetAllExams()
+        public async Task<Exam?> GetExamAsync(int? id)
         {
-            return await _context.Examenes.ToListAsync();
-        }
-        public async Task<Examenes?> GetExam(int? id)
-        {
-            return await _context.Examenes
+            return await _context.Exams
                 .FindAsync(id);
         }
-        public async Task<Examenes> AddExam(Examenes exam)
+        public async Task<List<Exam>> GetAllExamsAsync()
         {
-            _context.Examenes.Add(exam);
+            return await _context.Exams.ToListAsync();
+        }
+        public async Task<Exam> AddExamAsync(Exam exam)
+        {
+            _context.Exams.Add(exam);
             await _context.SaveChangesAsync();
             return exam;
         }
-        public async Task<Examenes> UpdateExams(Examenes exam)
+        public async Task<Exam> UpdateExamAsync(Exam exam)
         {
-            if (!await ExamExists(exam.Id)) return null;
+            if (!await ExamExistsAsync(exam.Id)) return null;
             _context.Update(exam);
             await _context.SaveChangesAsync();
             return exam;
         }
-        public async Task<bool> ExamExists(int id)
+        public async Task<bool> ExamExistsAsync(int id)
         {
-            return await _context.Examenes.AnyAsync(e => e.Id == id);
+            return await _context.Exams.AnyAsync(e => e.Id == id);
         }
-        public async Task<bool> DeleteExams(int id)
+        public async Task<bool> DeleteExamsAsync(int id)
         {
-            var exam = await _context.Examenes.FindAsync(id);
+            var exam = await _context.Exams.FindAsync(id);
             if (exam == null) return false;
 
-            _context.Examenes.Remove(exam);
+            _context.Exams.Remove(exam);
             await _context.SaveChangesAsync();
             return true;
         }

@@ -16,7 +16,7 @@ namespace PsychoUnedApi.Services
             _context = context;
         }
 
-        public async Task<List<Subject>> GetAllSubject()
+        public async Task<List<Subject>> GetAllSubjectAsync()
         {
             return await _context.Subjects.ToListAsync();
         }
@@ -25,24 +25,20 @@ namespace PsychoUnedApi.Services
             return await _context.Subjects
                 .FindAsync(id);
         }
-        public async Task<Subject> AddSubject(Subject asignatura)
+        public async Task<Subject> AddSubjectAsync(Subject asignatura)
         {
             _context.Subjects.Add(asignatura);
             await _context.SaveChangesAsync();
             return asignatura;
         }
-        public async Task<Subject> UpdateSubject(Subject asignatura)
+        public async Task<Subject> UpdateSubjectAsync(Subject asignatura)
         {
-            if (!await SubjectExists(asignatura.Id))return null;
+            if (!await SubjectExistsAsync(asignatura.Id))return null;
             _context.Update(asignatura);
             await _context.SaveChangesAsync();
             return asignatura;
         }
-        public async Task<bool> SubjectExists(int id)
-        {
-            return await _context.Subjects.AnyAsync(e => e.Id == id);
-        }
-        public async Task<bool> DeleteSubject(int id)
+        public async Task<bool> DeleteSubjectAsync(int id)
         {
             var asignatura = await _context.Subjects.FindAsync(id);
             if (asignatura == null) return false;
@@ -50,6 +46,10 @@ namespace PsychoUnedApi.Services
             _context.Subjects.Remove(asignatura);
             await _context.SaveChangesAsync();
             return true;
+        }
+        public async Task<bool> SubjectExistsAsync(int id)
+        {
+            return await _context.Subjects.AnyAsync(e => e.Id == id);
         }
     }
 }

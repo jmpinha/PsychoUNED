@@ -4,11 +4,11 @@ namespace PsychoUnedApi.Services
 {
     public interface ISubjectService
     {
-        Task<Subject?> GetAsignatura(int? id);
-        Task<List<Subject>> GetAllAsignaturas();
-        Task<Subject> CreateAsignatura(Subject asignatura);
-        Task<Subject> UpdateAsignatura(Subject asignatura);
-        Task<bool> DeleteAsignatura(int id);
-        Task<bool> AsignaturasExists(int id);
+        Task<Subject?> GetSubjectAsync(int? id);
+        Task<List<Subject>> GetAllSubjectAsync();
+        Task<Subject> AddSubjectAsync(Subject asignatura);
+        Task<Subject> UpdateSubjectAsync(Subject asignatura);
+        Task<bool> DeleteSubjectAsync(int id);
+        Task<bool> SubjectExistsAsync(int id);
     }
 }
