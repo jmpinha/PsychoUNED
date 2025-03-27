@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using PsychoUnedApi.Models;
+using PsychoUnedApi.Data;
 using PsychoUnedApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<MiDbContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Registramos el servicio en el contenedor de dependencias
 builder.Services.AddScoped<AsignaturasService>();
