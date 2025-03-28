@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PsychoUnedApi.DataModel;
+using PsychoUnedApi.Services.Interfaces;
 
 namespace PsychoUnedApi.Controllers
 {
@@ -8,61 +10,63 @@ namespace PsychoUnedApi.Controllers
     public class ExamController : Controller
     {
 
-        // POST: ExamenesController/Create
+        private readonly ILogger<ExamController> _logger;
+        private readonly IExamsService _examsService;
+
+        public ExamController(ILogger<ExamController> logger, IExamsService examsService)
+        {
+            _logger = logger;
+            _examsService = examsService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetExams()
+        {
+            var exams = await _examsService.GetAllExamsAsync();
+            return Ok(exams);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var exam = await _examsService.GetExamAsync(id);
+            if (exam == null) return NotFoundResponse(id);
+            return Ok(exam);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Edit(int id, [FromBody] Exam exam)
+        {
+            if (id != exam.Id) return BadRequest("El ID de la URL y el de la exam no coinciden.");
+
+            var actualizada = await _examsService.UpdateExamAsync(exam);
+            if (actualizada == null) return NotFoundResponse(id);
+
+            return Ok(actualizada);
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([FromBody] Exam exam)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (exam == null) return BadRequest("Los datos de la exam son inválidos.");
+
+            var creada = await _examsService.AddExamAsync(exam);
+            return CreatedAtAction(nameof(Details), new { id = creada.Id }, creada);
         }
 
-        // GET: ExamenesController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            return View();
-        }
+            var exam = await _examsService.GetExamAsync(id);
+            if (exam == null) return NotFound($"No se encontró el examen con ID {id}.");
 
-        // POST: ExamenesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _examsService.DeleteExamsAsync(id);
+            return NoContent();
         }
-
-        // GET: ExamenesController/Delete/5
-        public ActionResult Delete(int id)
+        // Método auxiliar para manejar la respuesta NotFound con mensaje detallado
+        private IActionResult NotFoundResponse(int id)
         {
-            return View();
-        }
-
-        // POST: ExamenesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return NotFound($"No se encontró el examen con ID {id}.");
         }
     }
 }

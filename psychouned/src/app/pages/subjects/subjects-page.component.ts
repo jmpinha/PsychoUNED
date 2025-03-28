@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Courses, Semester, SubjectsName } from 'src/app/models/Names';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IonicModule } from '@ionic/angular';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { GlobalsService } from 'src/app/services/globals.service';
 import { heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { GlobalsService } from 'src/app/core/services/globals.service';
 
 @Component({
   templateUrl: './subjects-page.component.html',
@@ -55,8 +55,8 @@ export class SubjectsPage {
       item => item.course === this.courseSelected && item.semester === this.semesterSelected
     );
   }
-
-  constructor(private globalsService: GlobalsService) {
+  private globalsService= inject(GlobalsService)
+  constructor() {
       addIcons({ heartOutline});}
 
   showToast(word: string) {

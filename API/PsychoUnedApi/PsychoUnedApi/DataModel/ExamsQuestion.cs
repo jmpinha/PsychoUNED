@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PsychoUnedApi.Models;
+namespace PsychoUnedApi.DataModel;
 
 public partial class ExamsQuestion
 {
@@ -22,4 +22,10 @@ public partial class ExamsQuestion
     public byte[]? ImageCorrection { get; set; }
 
     public int NQuestion { get; set; }
+
+    public virtual ICollection<ExamsQuestionsAnswer> ExamsQuestionsAnswers { get; set; } = new List<ExamsQuestionsAnswer>();
+
+    public virtual Exam IdExamNavigation { get; set; } = null!;
+
+    public virtual Subject IdSubjectsNavigation { get; set; } = null!;
 }

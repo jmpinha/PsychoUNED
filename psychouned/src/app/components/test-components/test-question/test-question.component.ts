@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { IonicModule } from '@ionic/angular';
 import { QuestionsAnswer } from 'src/app/models/QuestionAnswer.interface';
-import { GlobalsService } from 'src/app/services/globals.service';
 import { MatIconModule } from '@angular/material/icon';
+import { GlobalsService } from 'src/app/core/services/globals.service';
 
 @Component({
   selector: 'test-question',

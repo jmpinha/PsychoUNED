@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PsychoUnedApi.Models;
+namespace PsychoUnedApi.DataModel;
 
 public partial class ExamsQuestionsAnswer
 {
@@ -14,4 +14,6 @@ public partial class ExamsQuestionsAnswer
     public bool Correct { get; set; }
 
     public string Letter { get; set; } = null!;
+
+    public virtual ExamsQuestion IdQuestionNavigation { get; set; } = null!;
 }

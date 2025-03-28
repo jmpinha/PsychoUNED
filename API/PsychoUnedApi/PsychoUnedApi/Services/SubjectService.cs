@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PsychoUnedApi.Data;
-using PsychoUnedApi.Models;
+using PsychoUnedApi.DataModel;
+using PsychoUnedApi.Services.Interfaces;
 using System.Threading.Tasks;
 
 namespace PsychoUnedApi.Services
@@ -50,6 +51,22 @@ namespace PsychoUnedApi.Services
         public async Task<bool> SubjectExistsAsync(int id)
         {
             return await _context.Subjects.AnyAsync(e => e.Id == id);
+        }
+
+        public async Task<List<Subject>> GetFilterSubjectByCourseAndSemester(int course, int semester)
+        {
+            List<Subject> exams = await (from subject in _context.Subjects
+                                      where subject.Course == course && subject.Semester == semester
+                                      select subject).ToListAsync();
+            return exams;
+        }
+
+        public async Task<List<Subject>> GetFilterSubjectByName(string name)
+        {
+            List<Subject> exams = await(from subject in _context.Subjects
+                                        where subject.Description.Contains(name)
+                                        select subject).ToListAsync();
+            return exams;
         }
     }
 }

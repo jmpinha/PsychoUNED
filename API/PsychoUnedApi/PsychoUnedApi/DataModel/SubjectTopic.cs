@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PsychoUnedApi.Models;
+namespace PsychoUnedApi.DataModel;
 
 public partial class SubjectTopic
 {
@@ -11,4 +11,5 @@ public partial class SubjectTopic
 
     public string Descripcion { get; set; } = null!;
 
+    public virtual Subject IdSubjectNavigation { get; set; } = null!;
 }

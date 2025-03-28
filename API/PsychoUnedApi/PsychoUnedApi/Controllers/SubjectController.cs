@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using PsychoUnedApi.Data;
-using PsychoUnedApi.Models;
-using PsychoUnedApi.Services;
+using PsychoUnedApi.DataModel;
+using PsychoUnedApi.Services.Interfaces;
 using System.Threading.Tasks;
 
 namespace PsychoUnedApi.Controllers
@@ -13,44 +14,49 @@ namespace PsychoUnedApi.Controllers
     {
 
         private readonly ILogger<SubjectController> _logger;
-        private readonly ISubjectService _asignaturasService;
+        private readonly ISubjectService _subjectsService;
 
-        public SubjectController(ILogger<SubjectController> logger, ISubjectService asignaturasService)
+        public SubjectController(ILogger<SubjectController> logger, ISubjectService subjectsService)
         {
             _logger = logger;
-            _asignaturasService = asignaturasService;
+            _subjectsService = subjectsService;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var asignaturas = await _asignaturasService.GetAllSubjectAsync();
-            return Ok(asignaturas);
+            var subjects = await _subjectsService.GetAllSubjectAsync();
+            return Ok(subjects);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
-            var asignatura = await _asignaturasService.GetSubjectAsync(id);
-            if (asignatura == null) return NotFoundResponse(id);
-            return Ok(asignatura);
+            var subject = await _subjectsService.GetSubjectAsync(id);
+            if (subject == null) return NotFoundResponse(id);
+            return Ok(subject);
+        }
+        [HttpGet("filter")]
+        public async Task<IActionResult> DetailsByName([FromQuery] string name)
+        {
+            var subject = await _subjectsService.GetFilterSubjectByName(name);
+            if (subject.IsNullOrEmpty()) return NotFoundFilterResponse(name);
+            return Ok(subject);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Subject asignatura)
+        public async Task<IActionResult> Create([FromBody] Subject subject)
         {
-            if (asignatura == null) return BadRequest("Los datos de la asignatura son inválidos.");
+            if (subject == null) return BadRequest("Los datos de la subject son inválidos.");
 
-            var creada = await _asignaturasService.AddSubjectAsync(asignatura);
+            var creada = await _subjectsService.AddSubjectAsync(subject);
             return CreatedAtAction(nameof(Details), new { id = creada.Id }, creada);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, [FromBody] Subject asignatura)
+        [HttpPost("edit")]
+        public async Task<IActionResult> Edit([FromBody] Subject subject)
         {
-            if (id != asignatura.Id) return BadRequest("El ID de la URL y el de la asignatura no coinciden.");
-
-            var actualizada = await _asignaturasService.UpdateSubjectAsync(asignatura);
-            if (actualizada == null) return NotFoundResponse(id);
+            var actualizada = await _subjectsService.UpdateSubjectAsync(subject);
+            if (actualizada == null) return NotFoundResponse(subject.Id);
 
             return Ok(actualizada);
         }
@@ -58,10 +64,10 @@ namespace PsychoUnedApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var asignatura = await _asignaturasService.GetSubjectAsync(id);
-            if (asignatura == null) return NotFound($"No se encontró la asignatura con ID {id}.");
+            var subject = await _subjectsService.GetSubjectAsync(id);
+            if (subject == null) return NotFound($"No se encontró la subject con ID {id}.");
 
-            await _asignaturasService.DeleteSubjectAsync(id);
+            await _subjectsService.DeleteSubjectAsync(id);
             return NoContent();
         }
 
@@ -69,6 +75,10 @@ namespace PsychoUnedApi.Controllers
         private IActionResult NotFoundResponse(int id)
         {
             return NotFound($"No se encontró la asignatura con ID {id}.");
+        }
+        private IActionResult NotFoundFilterResponse(string name)
+        {
+            return NotFound($"No se encontró una asignatura que contenga: {name}.");
         }
     }
 }

@@ -6,7 +6,7 @@ import { addIcons } from 'ionicons';
 import { flowerOutline, bookOutline, checkboxOutline, calculatorOutline, addOutline } from 'ionicons/icons';
 import { MenuNames } from './models/Names';
 import { MatIconModule } from '@angular/material/icon';
-import { ThemeService } from './services/theme.service';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -27,7 +27,7 @@ import { ThemeService } from './services/theme.service';
         IonLabel,
         IonRouterLink,
         IonRouterOutlet,
-        MatIconModule
+        MatIconModule,
     ],
 })
 export class AppComponent {

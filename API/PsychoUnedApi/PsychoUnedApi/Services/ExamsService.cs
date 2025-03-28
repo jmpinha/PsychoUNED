@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PsychoUnedApi.Data;
-using PsychoUnedApi.Models;
+using PsychoUnedApi.DataModel;
+using PsychoUnedApi.Services.Interfaces;
 
 namespace PsychoUnedApi.Services
 {
-    public class ExamsService: IExamsService
+    public class ExamsService : IExamsService
     {
         private readonly ApplicationDbContext _context;
 
@@ -47,6 +48,23 @@ namespace PsychoUnedApi.Services
             _context.Exams.Remove(exam);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<List<Exam>> GetExamsBySubjectAsync(int idSubject)
+        {
+            List<Exam> exams = await (from exam in _context.Exams
+                                      where exam.IdSubject == idSubject
+                                      select exam).ToListAsync();
+            return exams;
+        }
+
+        public async Task<List<Exam>> GetExamsByYearWeekSubjectAsync(int year, int semester, int subject)
+        {
+            List<Exam> exams = await (from exam in _context.Exams
+                                      where exam.Year == year && exam.Semestre == semester
+                                      && exam.IdSubject == subject
+                                      select exam).ToListAsync();
+            return exams;
         }
     }
 }
