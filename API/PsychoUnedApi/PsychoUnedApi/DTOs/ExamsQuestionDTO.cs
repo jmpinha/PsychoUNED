@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PsychoUnedApi.Models;
 
-public partial class ExamsQuestion
+public partial class ExamsQuestionDTO
 {
     public int Id { get; set; }
 

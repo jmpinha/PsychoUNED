@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PsychoUnedApi.Data;
 using PsychoUnedApi.DataModel;
-using PsychoUnedApi.Services.Interfaces;
+using PsychoUnedApi.Interfaces;
+using PsychoUnedApi.Models;
 using System.Threading.Tasks;
 
 namespace PsychoUnedApi.Controllers
@@ -36,15 +37,30 @@ namespace PsychoUnedApi.Controllers
             return Ok(subject);
         }
         [HttpGet("filter")]
-        public async Task<IActionResult> DetailsByName([FromQuery] string name)
+        public async Task<IActionResult> DetailsByName(
+            [FromQuery] string? name,
+            [FromQuery] int? course = 0,
+            [FromQuery] int? semester = 0)
         {
-            var subject = await _subjectsService.GetFilterSubjectByName(name);
-            if (subject.IsNullOrEmpty()) return NotFoundFilterResponse(name);
-            return Ok(subject);
+            if(!name.IsNullOrEmpty())
+            {
+                var subject = await _subjectsService.GetFilterSubjectByName(name);
+                if (subject.IsNullOrEmpty()) return NotFoundFilterResponse(name);
+                return Ok(subject);
+            }
+            else if(semester != 0 && course != 0)
+            {
+
+                var subject = await _subjectsService.GetFilterSubjectByCourseAndSemester(course ?? 0, semester ?? 0);
+                if (subject.IsNullOrEmpty()) return NotFound($"No se encontró una asignatura con ese curso y ese semestre.");
+                return Ok(subject);
+            }
+
+            return BadRequest("Los datos de la subject son inválidos.");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Subject subject)
+        public async Task<IActionResult> Create([FromBody] SubjectDTO subject)
         {
             if (subject == null) return BadRequest("Los datos de la subject son inválidos.");
 
@@ -53,7 +69,7 @@ namespace PsychoUnedApi.Controllers
         }
 
         [HttpPost("edit")]
-        public async Task<IActionResult> Edit([FromBody] Subject subject)
+        public async Task<IActionResult> Edit([FromBody] SubjectDTO subject)
         {
             var actualizada = await _subjectsService.UpdateSubjectAsync(subject);
             if (actualizada == null) return NotFoundResponse(subject.Id);

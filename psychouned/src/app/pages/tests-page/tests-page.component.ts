@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, signal } from '@angular/core';
 import { QuestionComponent } from "../../components/test-components/test-question/test-question.component";
 import { Answer } from 'src/app/models/Answer';
-import { QuestionsAnswer } from 'src/app/models/QuestionAnswer.interface';
+import { QuestionsAnswer } from 'src/app/models/question-answer.interface';
 import { InitTestComponent } from 'src/app/components/test-components/test-init/test-init.component';
 import { IonButton,IonFooter,IonItemDivider,IonItem,IonList,IonContent,IonTitle,IonMenuButton,IonButtons,IonToolbar,IonHeader} from '@ionic/angular/standalone';
 import { GradeComponent } from 'src/app/components/grade-components/grade/grade.component';

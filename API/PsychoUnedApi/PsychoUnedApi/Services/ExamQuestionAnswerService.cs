@@ -1,5 +1,5 @@
 ﻿using PsychoUnedApi.DataModel;
-using PsychoUnedApi.Services.Interfaces;
+using PsychoUnedApi.Interfaces;
 
 namespace PsychoUnedApi.Services
 {

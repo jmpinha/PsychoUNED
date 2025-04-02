@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { IonicModule } from '@ionic/angular';
-import { QuestionsAnswer } from 'src/app/models/QuestionAnswer.interface';
+import { QuestionsAnswer } from 'src/app/models/question-answer.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { GlobalsService } from 'src/app/core/services/globals.service';
 

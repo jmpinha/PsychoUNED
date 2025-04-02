@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, input,  OnInit, output, Output } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IonicModule } from '@ionic/angular';
-import { DateExams, Semester } from 'src/app/models/Names';
+import { DateExams, Semester } from 'src/app/models/names';
 
 @Component({
     selector: 'test-select',

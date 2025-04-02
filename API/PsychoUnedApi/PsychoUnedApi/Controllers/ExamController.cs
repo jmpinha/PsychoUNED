@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PsychoUnedApi.DataModel;
-using PsychoUnedApi.Services.Interfaces;
+using PsychoUnedApi.Interfaces;
+using PsychoUnedApi.Models;
 
 namespace PsychoUnedApi.Controllers
 {
@@ -34,19 +35,17 @@ namespace PsychoUnedApi.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, [FromBody] Exam exam)
+        [HttpPost("edit")]
+        public async Task<IActionResult> Edit([FromBody] ExamDTO exam)
         {
-            if (id != exam.Id) return BadRequest("El ID de la URL y el de la exam no coinciden.");
-
             var actualizada = await _examsService.UpdateExamAsync(exam);
-            if (actualizada == null) return NotFoundResponse(id);
+            if (actualizada == null) return NotFoundResponse(exam.Id);
 
             return Ok(actualizada);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Exam exam)
+        public async Task<IActionResult> Create([FromBody] ExamDTO exam)
         {
             if (exam == null) return BadRequest("Los datos de la exam son inválidos.");
 

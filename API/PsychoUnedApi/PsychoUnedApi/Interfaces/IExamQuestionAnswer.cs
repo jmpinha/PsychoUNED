@@ -1,6 +1,6 @@
 ﻿using PsychoUnedApi.DataModel;
 
-namespace PsychoUnedApi.Services.Interfaces
+namespace PsychoUnedApi.Interfaces
 {
     public interface IExamQuestionAnswer
     {

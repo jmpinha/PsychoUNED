@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonApp, IonSplitPane, IonMenu, IonToggle, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonRouterLink } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { flowerOutline, bookOutline, checkboxOutline, calculatorOutline, addOutline } from 'ionicons/icons';
-import { MenuNames } from './models/Names';
+import { MenuNames } from './models/names';
 import { MatIconModule } from '@angular/material/icon';
 import { ThemeService } from './core/services/theme.service';
 
@@ -32,7 +32,7 @@ import { ThemeService } from './core/services/theme.service';
 })
 export class AppComponent {
     public appPages = [
-        // { title: MenuNames.SUBJECTS, url: 'asignaturas', icon: 'flower' },
+        { title: MenuNames.SUBJECTS, url: 'asignaturas', icon: 'flower' },
         // { title: MenuNames.NOTES, url: 'notes', icon: 'book' },
         { title: MenuNames.ADD_DATA, url: 'nuevosDatos', icon: 'add' },
         { title: MenuNames.TESTS, url: 'tests', icon: 'checkbox' },

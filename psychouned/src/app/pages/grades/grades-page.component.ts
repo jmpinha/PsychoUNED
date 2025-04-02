@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { GradeComponent } from 'src/app/components/grade-components/grade/grade.component';
 import { GradeCalculatorComponent } from 'src/app/components/grade-components/gradeCalculator/gradeCalculator.component';
-import { Grade } from 'src/app/models/Grade.interface';
+import { Grade } from 'src/app/models/grade.interface';
 
 @Component({
     templateUrl: './grades-page.component.html',

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MenuNames } from 'src/app/models/Names';
+import { MenuNames } from 'src/app/models/names';
 
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';

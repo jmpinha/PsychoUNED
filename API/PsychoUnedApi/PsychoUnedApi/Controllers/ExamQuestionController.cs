@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using PsychoUnedApi.DataModel;
-using PsychoUnedApi.Services.Interfaces;
+using PsychoUnedApi.Interfaces;
+using PsychoUnedApi.Models;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +37,7 @@ namespace PsychoUnedApi.Controllers
             return Ok(subject);
         }
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]ExamsQuestion value)
+        public async Task<IActionResult> Post([FromBody]ExamsQuestionDTO value)
         {
             if (value == null) return BadRequest("Los datos de la subject son inválidos.");
 
@@ -44,7 +46,7 @@ namespace PsychoUnedApi.Controllers
         }
 
         [HttpPost("edit")]
-        public async Task<IActionResult> EditQuestion([FromBody] ExamsQuestion value)
+        public async Task<IActionResult> EditQuestion([FromBody] ExamsQuestionDTO value)
         {
             var actualizada = await _examsQuestionService.UpdateExamQuestionAsync(value);
             if (actualizada == null) return NotFoundResponse(value.Id);

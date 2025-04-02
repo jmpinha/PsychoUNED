@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MatInputModule } from '@angular/material/input';
-import { Grade } from 'src/app/models/Grade.interface';
+import { Grade } from 'src/app/models/grade.interface';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';import { GradeService } from 'src/app/core/services/Grade.service';
 import { GlobalsService } from 'src/app/core/services/globals.service';

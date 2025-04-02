@@ -1,65 +1,92 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PsychoUnedApi.Data;
 using PsychoUnedApi.DataModel;
-using PsychoUnedApi.Services.Interfaces;
+using PsychoUnedApi.Models;
+using AutoMapper;
+using DataModelExamsQuestion = PsychoUnedApi.DataModel.ExamsQuestion;
+using PsychoUnedApi.Interfaces;
 
 namespace PsychoUnedApi.Services
 {
     public class ExamQuestionService : IExamQuestionService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ExamQuestionService(ApplicationDbContext context)
+        public ExamQuestionService(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public Task<ExamsQuestion> AddExamQuestionAsync(ExamsQuestion exam)
+        public async Task<ExamsQuestionDTO> AddExamQuestionAsync(ExamsQuestionDTO exam)
         {
-            throw new NotImplementedException();
+            var dataModelExamQuestion = _mapper.Map<DataModelExamsQuestion>(exam);
+            _context.ExamsQuestions.Add(dataModelExamQuestion);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<ExamsQuestionDTO>(dataModelExamQuestion);
         }
 
-        public Task<bool> DeleteExamsQuestionAsync(int id)
+        public async Task<bool> DeleteExamsQuestionAsync(int id)
         {
-            throw new NotImplementedException();
+            var examQuestion = await _context.ExamsQuestions.FindAsync(id);
+            if (examQuestion == null) return false;
+
+            _context.ExamsQuestions.Remove(examQuestion);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<bool> ExamQuestionExistsAsync(int id)
+        public async Task<bool> ExamQuestionExistsAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.ExamsQuestions.AnyAsync(e => e.Id == id);
         }
 
-        public Task<List<ExamsQuestion>> GetAllExamsQuestionAsync()
+        public async Task<List<ExamsQuestionDTO>> GetAllExamsQuestionAsync()
         {
-            throw new NotImplementedException();
+            var examQuestions = await _context.ExamsQuestions.ToListAsync();
+            return _mapper.Map<List<ExamsQuestionDTO>>(examQuestions);
         }
 
-        public Task<ExamsQuestion?> GetExamQuestionAsync(int? id)
+        public async Task<ExamsQuestionDTO?> GetExamQuestionAsync(int? id)
         {
-            throw new NotImplementedException();
+            var examQuestion = await _context.ExamsQuestions.FindAsync(id);
+            return examQuestion != null ? _mapper.Map<ExamsQuestionDTO>(examQuestion) : null;
         }
 
-        public async Task<List<ExamsQuestion>> GetExamsQuestionByExamAsync(int idExam)
+        public async Task<List<ExamsQuestionDTO>> GetExamsQuestionByExamAsync(int idExam)
         { 
-            List<ExamsQuestion> examsQuestionsList=await (from exam in _context.ExamsQuestions
+            List<DataModelExamsQuestion> examsQuestionsList = await (from exam in _context.ExamsQuestions
                                                    where exam.IdExam == idExam
                                                    select exam).ToListAsync();
-            return examsQuestionsList;
+            return _mapper.Map<List<ExamsQuestionDTO>>(examsQuestionsList);
         }
 
-        public Task<List<ExamsQuestion>> GetExamsQuestionBySubjectAsync(int topic)
+        public async Task<List<ExamsQuestionDTO>> GetExamsQuestionBySubjectAsync(int subjectId)
         {
-            throw new NotImplementedException();
+            var examQuestions = await (from exam in _context.ExamsQuestions
+                                     where exam.IdSubjects == subjectId
+                                     select exam).ToListAsync();
+            return _mapper.Map<List<ExamsQuestionDTO>>(examQuestions);
         }
 
-        public Task<List<ExamsQuestion>> GetExamsQuestionByTopicsAsync(int topic)
+        public async Task<List<ExamsQuestionDTO>> GetExamsQuestionByTopicsAsync(int topic)
         {
-            throw new NotImplementedException();
+            var examQuestions = await (from exam in _context.ExamsQuestions
+                                     where exam.Topic == topic
+                                     select exam).ToListAsync();
+            return _mapper.Map<List<ExamsQuestionDTO>>(examQuestions);
         }
 
-        public Task<ExamsQuestion> UpdateExamQuestionAsync(ExamsQuestion exam)
+        public async Task<ExamsQuestionDTO> UpdateExamQuestionAsync(ExamsQuestionDTO exam)
         {
-            throw new NotImplementedException();
+            if (!await ExamQuestionExistsAsync(exam.Id)) return null;
+            
+            var dataModelExamQuestion = _mapper.Map<DataModelExamsQuestion>(exam);
+            _context.Update(dataModelExamQuestion);
+            await _context.SaveChangesAsync();
+            
+            return _mapper.Map<ExamsQuestionDTO>(dataModelExamQuestion);
         }
     }
 }

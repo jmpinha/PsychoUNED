@@ -1,40 +1,49 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PsychoUnedApi.Data;
 using PsychoUnedApi.DataModel;
-using PsychoUnedApi.Services.Interfaces;
-
+using PsychoUnedApi.Models;
+using AutoMapper;
+using DataModelExam = PsychoUnedApi.DataModel.Exam;
+using PsychoUnedApi.Interfaces;
 namespace PsychoUnedApi.Services
 {
     public class ExamsService : IExamsService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ExamsService(ApplicationDbContext context)
+        public ExamsService(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<Exam?> GetExamAsync(int? id)
+        public async Task<ExamDTO?> GetExamAsync(int? id)
         {
-            return await _context.Exams
-                .FindAsync(id);
+            var exam = await _context.Exams.FindAsync(id);
+            return exam != null ? _mapper.Map<ExamDTO>(exam) : null;
         }
-        public async Task<List<Exam>> GetAllExamsAsync()
+        public async Task<List<ExamDTO>> GetAllExamsAsync()
         {
-            return await _context.Exams.ToListAsync();
+            var exams = await _context.Exams.ToListAsync();
+            return _mapper.Map<List<ExamDTO>>(exams);
         }
-        public async Task<Exam> AddExamAsync(Exam exam)
+        public async Task<ExamDTO> AddExamAsync(ExamDTO exam)
         {
-            _context.Exams.Add(exam);
+            var dataModelExam = _mapper.Map<DataModelExam>(exam);
+            _context.Exams.Add(dataModelExam);
             await _context.SaveChangesAsync();
-            return exam;
+            return _mapper.Map<ExamDTO>(dataModelExam);
         }
-        public async Task<Exam> UpdateExamAsync(Exam exam)
+        public async Task<ExamDTO> UpdateExamAsync(ExamDTO exam)
         {
             if (!await ExamExistsAsync(exam.Id)) return null;
-            _context.Update(exam);
+            
+            var dataModelExam = _mapper.Map<DataModelExam>(exam);
+            _context.Update(dataModelExam);
             await _context.SaveChangesAsync();
-            return exam;
+            
+            return _mapper.Map<ExamDTO>(dataModelExam);
         }
         public async Task<bool> ExamExistsAsync(int id)
         {
@@ -50,21 +59,21 @@ namespace PsychoUnedApi.Services
             return true;
         }
 
-        public async Task<List<Exam>> GetExamsBySubjectAsync(int idSubject)
+        public async Task<List<ExamDTO>> GetExamsBySubjectAsync(int idSubject)
         {
-            List<Exam> exams = await (from exam in _context.Exams
-                                      where exam.IdSubject == idSubject
-                                      select exam).ToListAsync();
-            return exams;
+            var exams = await (from exam in _context.Exams
+                              where exam.IdSubject == idSubject
+                              select exam).ToListAsync();
+            return _mapper.Map<List<ExamDTO>>(exams);
         }
 
-        public async Task<List<Exam>> GetExamsByYearWeekSubjectAsync(int year, int semester, int subject)
+        public async Task<List<ExamDTO>> GetExamsByYearWeekSubjectAsync(int year, int semester, int subject)
         {
-            List<Exam> exams = await (from exam in _context.Exams
-                                      where exam.Year == year && exam.Semestre == semester
-                                      && exam.IdSubject == subject
-                                      select exam).ToListAsync();
-            return exams;
+            var exams = await (from exam in _context.Exams
+                              where exam.Year == year && exam.Semestre == semester
+                              && exam.IdSubject == subject
+                              select exam).ToListAsync();
+            return _mapper.Map<List<ExamDTO>>(exams);
         }
     }
 }
