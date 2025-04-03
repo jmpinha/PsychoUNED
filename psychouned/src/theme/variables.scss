@@ -14,8 +14,16 @@
     --ion-color-primary: #3880ff;
     --ion-color-secondary: #3dc2ff;
     --ion-color-tertiary: #5260ff;
-    --ion-background-color: #121212;
-    --ion-item-background: #1e1e1e;
-    --ion-toolbar-background: #1f1f1f;
-    --ion-text-color: #ffffff;
+    --ion-background-color: oklch(25.33% 0.016 252.42);
+    --ion-item-background:oklch(21.15% 0.012 254.09);
+    --ion-toolbar-background: oklch(21% 0.034 264.665);
+    --ion-text-color: oklch(97.807% 0.029 256.847);
 }
+
+// --ion-color-primary: oklch(58% 0.233 277.117);
+// --ion-color-secondary:oklch(96% 0.018 272.314);
+// --ion-color-tertiary: #5260ff;
+// --ion-background-color: oklch(25.33% 0.016 252.42);
+// --ion-item-background:oklch(21.15% 0.012 254.09);
+// --ion-toolbar-background: oklch(21% 0.034 264.665);
+// --ion-text-color: oklch(97.807% 0.029 256.847);

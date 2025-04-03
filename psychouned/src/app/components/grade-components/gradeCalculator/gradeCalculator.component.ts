@@ -51,9 +51,6 @@ export class GradeCalculatorComponent {
     get answersBlank() {
         return Number(this.answersBlankForm.value);
     }
-    get getTheme(){
-        return this.themeService.isDarkMode();
-    }
     constructor(private gradeService: GradeService,
         private globalsService: GlobalsService,
         private themeService: ThemeService

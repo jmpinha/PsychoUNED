@@ -8,9 +8,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { heartOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { GlobalsService } from 'src/app/core/services/globals.service';
-import { SubjectDTO } from 'src/app/models/Subjects.interface';
-import { SubjectsApiService } from 'src/app/core/api/Subjects.service';
-
+import { SubjectDTO } from 'src/app/models/subjects.interface';
+import { SubjectsApiService } from 'src/app/core/api/subjects-api.service';
 @Component({
   templateUrl: './subjects-page.component.html',
   styleUrls: ['./subjects-page.component.scss'],

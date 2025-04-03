@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
-import { SubjectDTO } from 'src/app/models/Subjects.interface';
+import { SubjectDTO } from 'src/app/models/subjects.interface';
 
 @Injectable({
   providedIn: 'root'
