@@ -9,7 +9,7 @@
   <mat-tab-group [@translateTab] animationDuration="250ms" (selectedIndexChange)="changeCourse($event)">
     <mat-tab *ngFor="let course of courses">
       <ng-template mat-tab-label>
-        <span class="text-white">{{course.courseDescription}}</span>
+        <span>{{course.courseDescription}}</span>
       </ng-template>
     </mat-tab>
   </mat-tab-group>
@@ -18,16 +18,20 @@
 
 <ion-content>
   <mat-tab-group animationDuration="250ms" (selectedIndexChange)="changeSemester($event)">
-    <mat-tab *ngFor="let semester of semesters" >
+    <mat-tab *ngFor="let semester of semesters">
       <ng-template mat-tab-label>
-        <span class="text-white">{{semester.semesterDescription}}</span>
+        <span>{{semester.semesterDescription}}</span>
       </ng-template>
     </mat-tab>
   </mat-tab-group>
-  <ion-list class="list" lines="none">
-    <ion-item *ngFor="let item of filteredItems" (click)="showToast(item.subject)">
-      <ion-icon aria-hidden="true" slot="start" [ios]="'heart'" [md]="'heart-outline'"></ion-icon>
-      {{ item.subject }}
+  <ion-list class="list" lines="none" >
+    @for (item of items(); track $index) {
+    <ion-item [button]="true" class="cursor-pointer hover:bg-black" (click)="showToast(item.description)">
+      <ion-icon class="icon-color-white" aria-hidden="true" slot="start" [ios]="'heart'" [md]="'heart-outline'"></ion-icon>
+      <span class="ml-4">
+        {{ item.description }}
+      </span>
     </ion-item>
+  }
   </ion-list>
 </ion-content>

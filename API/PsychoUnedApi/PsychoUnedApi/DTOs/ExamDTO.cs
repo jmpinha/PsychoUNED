@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PsychoUnedApi.Models;
 
-public partial class Exam
+public partial class ExamDTO
 {
     public int Id { get; set; }
 
@@ -16,8 +16,4 @@ public partial class Exam
     public string? Type { get; set; }
 
     public int Week { get; set; }
-
-    public virtual ICollection<ExamsQuestion> ExamsQuestions { get; set; } = new List<ExamsQuestion>();
-
-    public virtual Subject IdSubjectNavigation { get; set; } = null!;
 }

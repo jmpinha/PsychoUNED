@@ -5,6 +5,7 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -13,5 +14,6 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideAnimations(),
+    provideHttpClient(withFetch())
   ],
 });

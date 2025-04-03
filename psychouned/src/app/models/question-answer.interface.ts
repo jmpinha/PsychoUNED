@@ -1,4 +1,5 @@
-import { Answer } from "./Answer";
+import { Answer } from 'src/app/models/Answer';
+
 
 export interface QuestionsAnswer {
     question: string;

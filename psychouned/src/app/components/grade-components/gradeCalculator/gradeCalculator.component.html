@@ -1,4 +1,4 @@
-<form [ngClass]="getTheme? 'dark-form':'white-form'" class="general-form">
+<form class="general-form">
   <app-input-component [optionForm]="totalQuestionsForm" [label]="'Total de preguntas'" class="custom-input"
     (optionResponse)="changeQuestion($event)">
   </app-input-component>
@@ -13,6 +13,6 @@
   <app-input-component [optionForm]="answersBlankForm" [label]="'En Blanco'" class="custom-input"
     (optionResponse)="changeAnswerBlank($event)">
   </app-input-component>
-  <ion-button (click)="submit()">Resultado</ion-button>
+  <ion-button class="m-2 btn-result" (click)="submit()">Resultado</ion-button>
 
 </form>

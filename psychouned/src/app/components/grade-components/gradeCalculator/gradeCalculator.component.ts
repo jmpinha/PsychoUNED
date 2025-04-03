@@ -3,14 +3,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MatInputModule } from '@angular/material/input';
-import { GlobalsService } from 'src/app/services/globals.service';
-import { Grade } from 'src/app/models/Grade.interface';
-import { GradeService } from 'src/app/services/grade.service';
+import { Grade } from 'src/app/models/grade.interface';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSelectModule} from '@angular/material/select';
-import { ThemeService } from 'src/app/services/theme.service';
-import { InputComponentComponent } from 'src/app/components/common/input-component/input-component.component';
-import { SelectComponentComponent } from 'src/app/components/common/select-component/select-component.component';
+import {MatSelectModule} from '@angular/material/select';import { GradeService } from 'src/app/core/services/Grade.service';
+import { GlobalsService } from 'src/app/core/services/globals.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
+import { InputComponentComponent } from 'src/app/shared/components/input-component/input-component.component';
+import { SelectComponentComponent } from 'src/app/shared/components/select-component/select-component.component';
 
 @Component({
     selector: 'grade-calculator',
@@ -51,9 +50,6 @@ export class GradeCalculatorComponent {
     }
     get answersBlank() {
         return Number(this.answersBlankForm.value);
-    }
-    get getTheme(){
-        return this.themeService.isDarkMode();
     }
     constructor(private gradeService: GradeService,
         private globalsService: GlobalsService,

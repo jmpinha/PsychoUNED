@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, input,  OnInit, output, Output } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IonicModule } from '@ionic/angular';
-import { DateExams, Semester } from 'src/app/models/Names';
+import { DateExams, Semester } from 'src/app/models/names';
 
 @Component({
     selector: 'test-select',
@@ -27,13 +27,13 @@ import { DateExams, Semester } from 'src/app/models/Names';
 export class TestSelectComponent implements OnInit {
     subjectId = input.required<number>();
     examId = output<number>()
-    years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015,];
+    years = [2025,2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015,];
     semesters = [{ semesterDescription: Semester.FIRST, semester: 1 },
     { semesterDescription: Semester.SECOND, semester: 2 }];
     dateExams = DateExams.exams;
     constructor() { }
     ngOnInit(): void {
-        this.years.sort();
+        this.years.sort().reverse();
     }
     changeYear(event: any) {
         console.log(event);

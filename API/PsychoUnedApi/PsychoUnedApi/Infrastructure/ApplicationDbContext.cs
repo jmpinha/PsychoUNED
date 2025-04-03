@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using PsychoUnedApi.Models;
+using PsychoUnedApi.DataModel;
 
 namespace PsychoUnedApi.Data;
 
@@ -73,8 +73,9 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.IdExam).HasColumnName("id_exam");
             entity.Property(e => e.IdSubjects).HasColumnName("id_subjects");
             entity.Property(e => e.Image).HasColumnName("image");
+            entity.Property(e => e.ImageCorrection).HasColumnName("imageCorrection");
+            entity.Property(e => e.NQuestion).HasColumnName("n_question");
             entity.Property(e => e.Question)
-                .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("question");
             entity.Property(e => e.Topic).HasColumnName("topic");
@@ -103,6 +104,11 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("answer");
             entity.Property(e => e.Correct).HasColumnName("correct");
             entity.Property(e => e.IdQuestion).HasColumnName("id_question");
+            entity.Property(e => e.Letter)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("letter");
 
             entity.HasOne(d => d.IdQuestionNavigation).WithMany(p => p.ExamsQuestionsAnswers)
                 .HasForeignKey(d => d.IdQuestion)
@@ -137,6 +143,7 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("description");
+            entity.Property(e => e.NAnswers).HasColumnName("nAnswers");
             entity.Property(e => e.Semester).HasColumnName("semester");
         });
 

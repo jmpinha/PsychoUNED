@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PsychoUnedApi.Models;
+namespace PsychoUnedApi.DataModel;
 
 public partial class ExamsQuestion
 {
     public int Id { get; set; }
 
     public int IdExam { get; set; }
+
+    public int IdSubjects { get; set; }
 
     public string Question { get; set; } = null!;
 
@@ -17,7 +19,9 @@ public partial class ExamsQuestion
 
     public string? Correction { get; set; }
 
-    public int IdSubjects { get; set; }
+    public byte[]? ImageCorrection { get; set; }
+
+    public int NQuestion { get; set; }
 
     public virtual ICollection<ExamsQuestionsAnswer> ExamsQuestionsAnswers { get; set; } = new List<ExamsQuestionsAnswer>();
 

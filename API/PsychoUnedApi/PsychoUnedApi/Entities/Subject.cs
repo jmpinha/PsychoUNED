@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PsychoUnedApi.Models;
+namespace PsychoUnedApi.DataModel;
 
 public partial class Subject
 {
@@ -14,6 +14,8 @@ public partial class Subject
     public bool Annual { get; set; }
 
     public string Description { get; set; } = null!;
+
+    public int NAnswers { get; set; }
 
     public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
 

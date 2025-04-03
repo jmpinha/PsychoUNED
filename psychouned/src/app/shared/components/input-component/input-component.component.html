@@ -1,5 +1,5 @@
 
-<mat-form-field class="input-class">
+<mat-form-field class="input-class rounded-full">
   <mat-label class="lbl-title">{{label()}}</mat-label>
   <input matInput type="text" (input)="validateNumber($event)" maxlength="2"
     [formControl]="optionForm()" (blur)="inputBlur()">

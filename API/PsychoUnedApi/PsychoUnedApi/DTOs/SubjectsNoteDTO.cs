@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PsychoUnedApi.Models;
 
-public partial class SubjectsNote
+public partial class SubjectsNoteDTO
 {
     public int Id { get; set; }
 
@@ -15,5 +15,4 @@ public partial class SubjectsNote
 
     public string? Link { get; set; }
 
-    public virtual Subject IdSubjectNavigation { get; set; } = null!;
 }
